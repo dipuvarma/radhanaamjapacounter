@@ -1,27 +1,25 @@
 @import "tailwindcss";
 
-
 @theme inline {
-  --font-heading: var(--font-cinzel);
-  --font-body: var(--font-poppins);
+  --font-cinzel: var(--font-cinzel);
+  --font-poppins: var(--font-poppins);
 
   --color-saffron: #F37420;
   --color-light-yellow: #F9BB4D;
   --color-lighter-yellow: #FAE6B8;
   --color-orange-saffron: #FAD199;
-
 }
 
 body {
   font-family: var(--font-poppins), sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-cinzel), serif;
-}
-
 .primary-heading{
   @apply sm:text-3xl md:text-5xl lg:text-6xl
+}
+
+.cinzel-heading {
+  font-family: var(--font-cinzel), serif;
 }
 
 .secondary-heading{

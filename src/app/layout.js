@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${poppins.variable} h-full antialiased`}
+      className={`${cinzelDecorative.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-(--color-lighter-yellow)">
         <Navbar />
