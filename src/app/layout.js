@@ -1,6 +1,7 @@
 import { Cinzel_Decorative, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
+import { JapaStateProvider } from "@/context/JapaStateContext";
 
 const cinzelDecorative = Cinzel_Decorative({
   variable: "--font-cinzel",
@@ -16,7 +17,8 @@ const poppins = Poppins({
 
 export const metadata = {
   title: "Radhanaam Japa Counter",
-  description: "Track your daily chanting of Radhe Radhe — a devotional Japa counter for devotees.",
+  description:
+    "Track your daily chanting of Radhe Radhe — a devotional Japa counter for devotees.",
 };
 
 export default function RootLayout({ children }) {
@@ -27,7 +29,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col bg-(--color-lighter-yellow)">
         <Navbar />
-        {children}
+        <JapaStateProvider>{children}</JapaStateProvider>
       </body>
     </html>
   );

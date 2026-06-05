@@ -1,5 +1,7 @@
 "use client";
 
+import { useJapaState } from "@/hooks/useJapaState";
+
 const TOTAL_BEADS = 108;
 const RING_RADIUS = 170;
 const BEAD_R = 8;
@@ -20,6 +22,8 @@ const beads = Array.from({ length: TOTAL_BEADS }, (_, i) => {
 });
 
 const BeadCircle = () => {
+  const { japaCount } = useJapaState();
+
   return (
     <div className="flex flex-col items-center gap-2">
       {/* SVG Mala */}
@@ -38,6 +42,13 @@ const BeadCircle = () => {
               <stop offset="0%" stopColor="#FAD199" />
               <stop offset="60%" stopColor="#F37420" />
               <stop offset="100%" stopColor="#c45a10" />
+            </radialGradient>
+
+            {/* Unchanted/Sandalwood bead gradient */}
+            <radialGradient id="unchanted-bead-grad" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="#FFEAD2" />
+              <stop offset="60%" stopColor="#EBC39A" />
+              <stop offset="100%" stopColor="#C89D7C" />
             </radialGradient>
 
             {/* Sumeru (guru) bead gradient — gold */}
@@ -98,8 +109,11 @@ const BeadCircle = () => {
           />
 
           {/* 108 Beads */}
-          {beads.map(({ x, y, index, isSumeru }) =>
-            isSumeru ? (
+          {beads.map(({ x, y, index, isSumeru }) => {
+            const isChanted = !isSumeru && index <= japaCount;
+            const isActive = !isSumeru && index === japaCount + 1;
+
+            return isSumeru ? (
               /* Sumeru / Guru bead — larger, gold */
               <g key={index}>
                 {/* Halo */}
@@ -140,18 +154,45 @@ const BeadCircle = () => {
               </g>
             ) : (
               /* Regular bead */
-              <circle
-                key={index}
-                cx={x}
-                cy={y}
-                r={BEAD_R}
-                fill="url(#bead-grad)"
-                stroke="#c45a10"
-                strokeWidth="0.8"
-                opacity="0.95"
-              />
-            ),
-          )}
+              <g key={index}>
+                {/* Active bead pulsing glow */}
+                {isActive && (
+                  <circle
+                    cx={x}
+                    cy={y}
+                    r={BEAD_R + 6}
+                    fill="none"
+                    stroke="#F37420"
+                    strokeWidth="1.5"
+                    opacity="0.7"
+                    className="animate-ping"
+                    style={{
+                      transformOrigin: `${x}px ${y}px`,
+                    }}
+                  />
+                )}
+                <circle
+                  cx={x}
+                  cy={y}
+                  r={
+                    isActive ? BEAD_R + 2.5 : isChanted ? BEAD_R + 0.5 : BEAD_R
+                  }
+                  fill={
+                    isChanted || isActive
+                      ? "url(#bead-grad)"
+                      : "url(#unchanted-bead-grad)"
+                  }
+                  stroke={isChanted || isActive ? "#c45a10" : "#A7724C"}
+                  strokeWidth={isActive ? "1.5" : "0.8"}
+                  opacity={isActive ? "1" : isChanted ? "0.95" : "0.6"}
+                  style={{
+                    transition: "all 0.3s ease-in-out",
+                    transformOrigin: `${x}px ${y}px`,
+                  }}
+                />
+              </g>
+            );
+          })}
         </svg>
       </div>
     </div>
