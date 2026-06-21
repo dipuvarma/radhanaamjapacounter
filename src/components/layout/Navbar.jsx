@@ -14,6 +14,10 @@ const Navbar = () => {
       pathSrc: "/",
     },
     {
+      pathName: "Statistics",
+      pathSrc: "/statistics",
+    },
+    {
       pathName: "Premanand",
       pathSrc: "/premanand-ji-maharaj",
     },
@@ -51,7 +55,11 @@ const Navbar = () => {
             aria-label="Open Settings"
             className="p-1 aspect-square outline-1 rounded-sm outline-amber-300 bg-amber-50 hover:bg-amber-100 transition-colors cursor-pointer"
           >
-            <TbSettings aria-hidden="true" size={20} className="text-amber-900" />
+            <TbSettings
+              aria-hidden="true"
+              size={20}
+              className="text-amber-900"
+            />
           </button>
         </div>
       </section>

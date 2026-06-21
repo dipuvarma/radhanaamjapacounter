@@ -1,8 +1,10 @@
 "use client";
+
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
 
 import { useJapaState } from "@/hooks/useJapaState";
 import { CounterPanel, DeityDisplay } from "..";
+import Link from "next/link";
 
 const HeroSection = () => {
   const { handleIncreaseJapaCount } = useJapaState();
@@ -12,8 +14,8 @@ const HeroSection = () => {
   };
 
   return (
-    <section onClick={handleJapaCount} className="w-full select-none">
-      <section className="  mx-auto px-4 py-4">
+    <section onClick={handleJapaCount} className="w-full relative select-none">
+      <section className="mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Audio Mute and Unmute Toggle  */}
           <div className="flex items-center gap-2">
@@ -66,6 +68,15 @@ const HeroSection = () => {
 
         <CounterPanel />
         <DeityDisplay />
+
+        <div className="flex justify-end">
+          <Link
+            href="/statistics"
+            className="px-4 py-2 hover:bg-gray-100 bg-white outline-1 outline-amber-800 rounded-md fixed right-10 bottom-10"
+          >
+            Statistics
+          </Link>
+        </div>
       </section>
     </section>
   );
