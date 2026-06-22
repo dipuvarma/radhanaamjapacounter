@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  updateChatAnalytics,
+  updateDurationAnalytics,
+  verifyStreakValidity,
+} from "@/utils/helper";
 import { createContext, useEffect, useState } from "react";
 
 export const JapaStateContext = createContext();
@@ -11,12 +16,21 @@ export const JapaStateProvider = ({ children }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [elapseSeconds, setElapseSeconds] = useState(0);
 
+  const [analytics, setAnalytics] = useState(null);
+
+  useEffect(() => {
+    const initialData = verifyStreakValidity();
+    setAnalytics(initialData);
+  }, []);
+
   useEffect(() => {
     let intervalId;
 
     if (isRunning) {
       intervalId = setInterval(() => {
         setElapseSeconds((prev) => prev + 1);
+        const updatedData = updateDurationAnalytics(10);
+        setAnalytics(updatedData);
       }, 10000);
     }
 
@@ -38,6 +52,10 @@ export const JapaStateProvider = ({ children }) => {
       setMalaCount((prev) => prev + 1);
       setJapaCount(0);
     }
+
+    //LocalStorage
+    const updatedData = updateChatAnalytics();
+    setAnalytics(updatedData);
   };
 
   const values = {
@@ -45,6 +63,7 @@ export const JapaStateProvider = ({ children }) => {
     malaCount,
     elapseSeconds,
     handleIncreaseJapaCount,
+    analytics,
   };
 
   return (
