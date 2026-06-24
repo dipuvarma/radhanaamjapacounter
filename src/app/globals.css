@@ -4,36 +4,36 @@
   --font-cinzel: var(--font-cinzel);
   --font-poppins: var(--font-poppins);
 
-  --color-saffron: #F37420;
-  --color-light-yellow: #F9BB4D;
-  --color-lighter-yellow: #FAE6B8;
-  --color-orange-saffron: #FAD199;
+  --color-saffron: #f37420;
+  --color-light-yellow: #f9bb4d;
+  --color-lighter-yellow: #fae6b8;
+  --color-orange-saffron: #fad199;
 }
 
 body {
   font-family: var(--font-poppins), sans-serif;
 }
 
-.primary-heading{
-  @apply sm:text-3xl md:text-5xl lg:text-6xl
+.primary-heading {
+  @apply sm:text-xl md:text-2xl lg:text-3xl;
 }
 
 .cinzel-heading {
   font-family: var(--font-cinzel), serif;
 }
 
-.secondary-heading{
-  @apply sm:text-xl md:text-3xl lg:text-4xl
+.secondary-heading {
+  @apply sm:text-xl md:text-3xl lg:text-4xl;
 }
 
-.tertiary-heading{
-  @apply sm:text-lg md:text-2xl lg:text-3xl
+.tertiary-heading {
+  @apply sm:text-lg md:text-2xl lg:text-3xl;
 }
 
-.paragraph-text{
-  @apply sm:text-sm md:text-base
+.paragraph-text {
+  @apply sm:text-sm md:text-base;
 }
 
-.button-text{
-  @apply sm:text-sm md:text-base
+.button-text {
+  @apply sm:text-sm md:text-base;
 }

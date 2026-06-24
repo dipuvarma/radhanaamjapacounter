@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,7 +10,7 @@ const mantras = [
     description:
       "Invoke the remover of obstacles and begin your journey with grace.",
     image: "/images/ganesh.jpg",
-    href: "/om-gam-ganapataye-namah",
+    href: "/mantra/om-gam-ganapataye-namah",
     accent: "#F37420",
   },
   {
@@ -21,8 +19,8 @@ const mantras = [
     deity: "Lord Hanuman",
     description:
       "Seek the blessings of the divine devotee for strength and courage.",
-    image: "/images/hanuman-thumbnail.jfif",
-    href: "/om-ham-hanumate-namah",
+    image: "/images/hanuman.jpg",
+    href: "/mantra/om-ham-hanumate-namah",
     accent: "#F37420",
   },
   {
@@ -31,7 +29,7 @@ const mantras = [
     deity: "Lord Krishna",
     description: "Chant the Maha Mantra and immerse yourself in divine bliss.",
     image: "/images/krishna.jfif",
-    href: "/hare-krishna",
+    href: "/mantra/hare-krishna",
     accent: "#F9BB4D",
   },
   {
@@ -41,7 +39,7 @@ const mantras = [
     description:
       "Sing the name of Radha Rani and feel her boundless love and grace.",
     image: "/images/radha.jpg",
-    href: "/",
+    href: "/mantra/radha-radha",
     accent: "#F9BB4D",
   },
   {
@@ -50,7 +48,7 @@ const mantras = [
     deity: "Lord Ram",
     description: "Chant the name of Shri Ram, the embodiment of righteousness.",
     image: "/images/ram.jfif",
-    href: "/jai-shri-ram",
+    href: "/mantra/jai-shri-ram",
     accent: "#F37420",
   },
   {
@@ -96,16 +94,6 @@ const MantraPage = () => {
               border: "1.5px solid #FAD199",
               boxShadow: "0 2px 16px 0 rgba(243,116,32,0.07)",
               transition: "box-shadow 0.25s, transform 0.25s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow =
-                "0 8px 32px 0 rgba(243,116,32,0.18)";
-              e.currentTarget.style.transform = "translateY(-4px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow =
-                "0 2px 16px 0 rgba(243,116,32,0.07)";
-              e.currentTarget.style.transform = "translateY(0)";
             }}
           >
             {/* Image */}
@@ -164,16 +152,6 @@ const MantraPage = () => {
                   boxShadow: "0 2px 8px rgba(243,116,32,0.25)",
                   transition: "filter 0.2s, box-shadow 0.2s",
                   textDecoration: "none",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.filter = "brightness(1.08)";
-                  e.currentTarget.style.boxShadow =
-                    "0 4px 16px rgba(243,116,32,0.4)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.filter = "brightness(1)";
-                  e.currentTarget.style.boxShadow =
-                    "0 2px 8px rgba(243,116,32,0.25)";
                 }}
               >
                 Start Chanting

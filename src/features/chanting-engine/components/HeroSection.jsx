@@ -8,7 +8,7 @@ import Link from "next/link";
 import useSound from "use-sound";
 import { useState } from "react";
 
-const HeroSection = () => {
+const HeroSection = ({ imageSrc, altDescription, title }) => {
   const { handleIncreaseJapaCount } = useJapaState();
   const [isSoundOn, setIsSoundOn] = useState(false);
 
@@ -50,8 +50,8 @@ const HeroSection = () => {
           </div>
 
           {/* Current Mantra Title  */}
-          <h1 className="primary-heading text-center font-semibold text-amber-900 cinzel-heading">
-            Radhe Radhe
+          <h1 className="primary-heading text-center font-semibold text-amber-900">
+            {title}
           </h1>
 
           {/* Select Mantra Dropdown  */}
@@ -91,7 +91,7 @@ const HeroSection = () => {
         </div>
 
         <CounterPanel />
-        <DeityDisplay />
+        <DeityDisplay imgSrc={imageSrc} altDescription={altDescription} />
 
         <div className="flex justify-end">
           <Link
