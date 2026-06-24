@@ -18,12 +18,12 @@ const Navbar = () => {
       pathSrc: "/statistics",
     },
     {
-      pathName: "Premanand",
-      pathSrc: "/premanand-ji-maharaj",
+      pathName: "Leaderboard",
+      pathSrc: "/leaderboard",
     },
     {
-      pathName: "Blogs",
-      pathSrc: "/blogs",
+      pathName: "Mantra",
+      pathSrc: "/mantra",
     },
   ];
 
