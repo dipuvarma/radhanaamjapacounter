@@ -39,7 +39,7 @@ const mantras = [
     description:
       "Sing the name of Radha Rani and feel her boundless love and grace.",
     image: "/images/radha.jpg",
-    href: "/mantra/radha-radha",
+    href: "/",
     accent: "#F9BB4D",
   },
   {
@@ -58,7 +58,7 @@ const mantras = [
     description:
       "Bow to Lord Shiva, the supreme being of cosmic consciousness.",
     image: "/images/shivji.png",
-    href: "/om-namah-shivaya",
+    href: "/mantra/om-namah-shivaya",
     accent: "#F9BB4D",
   },
 ];

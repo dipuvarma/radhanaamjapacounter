@@ -7,8 +7,11 @@ import { CounterPanel, DeityDisplay } from "..";
 import Link from "next/link";
 import useSound from "use-sound";
 import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 const HeroSection = ({ imageSrc, altDescription, title }) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const { handleIncreaseJapaCount } = useJapaState();
   const [isSoundOn, setIsSoundOn] = useState(false);
 
@@ -35,7 +38,7 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
         <div className="flex items-center justify-between">
           {/* Audio Mute and Unmute Toggle  */}
           <div
-            className="flex items-center gap-2"
+            className="flex flex-1 items-center gap-2"
             onClick={(e) => handleSoundStatus(e)}
           >
             <BiSolidVolumeMute className="text-xl text-amber-950" />
@@ -55,37 +58,66 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
           </h1>
 
           {/* Select Mantra Dropdown  */}
-          <div className="relative font-poppins">
-            <select
-              name=""
-              id=""
-              onClick={(e) => e.stopPropagation()}
-              className="appearance-none bg-gray-50 rounded-full pl-4 pr-8 py-1.5 text-sm font-medium text-amber-900 shadow-sm focus:outline-none focus:ring-1 focus:ring-saffron/50 transition-all duration-300 cursor-pointer"
-            >
-              <option value="" className="bg-amber-50 text-amber-900 text-sm">
-                Radhe Radhe
-              </option>
-              <option value="" className="bg-amber-50 text-amber-900 text-sm">
-                Om Nam Shivaye
-              </option>
-              <option value="" className="bg-amber-50 text-amber-900 text-sm">
-                Ram Ram
-              </option>
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-              <svg
-                className="w-4 h-4 text-saffron"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <div className="flex flex-1 justify-end">
+            <div className="relative font-poppins">
+              <select
+                value={pathname}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  router.push(e.target.value);
+                }}
+                onClick={(e) => e.stopPropagation()}
+                className="appearance-none bg-gray-50 rounded-full pl-4 pr-8 py-1.5 text-sm font-medium text-amber-900 shadow-sm focus:outline-none focus:ring-1 focus:ring-saffron/50 transition-all duration-300 cursor-pointer"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
+                <option value="/" className="bg-amber-50 text-amber-900 text-sm">
+                  Radhe Radhe
+                </option>
+                <option
+                  value="/mantra/hare-krishna"
+                  className="bg-amber-50 text-amber-900 text-sm"
+                >
+                  Hare Krishna
+                </option>
+                <option
+                  value="/mantra/jai-shri-ram"
+                  className="bg-amber-50 text-amber-900 text-sm"
+                >
+                  Jai Shri Ram
+                </option>
+                <option
+                  value="/mantra/om-gam-ganapataye-namah"
+                  className="bg-amber-50 text-amber-900 text-sm"
+                >
+                  Om Ganapataye Namah
+                </option>
+                <option
+                  value="/mantra/om-ham-hanumate-namah"
+                  className="bg-amber-50 text-amber-900 text-sm"
+                >
+                  Om Hanumate Namah
+                </option>
+                <option
+                  value="/mantra/om-namah-shivaya"
+                  className="bg-amber-50 text-amber-900 text-sm"
+                >
+                  Om Namah Shivaya
+                </option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                <svg
+                  className="w-4 h-4 text-saffron"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
