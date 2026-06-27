@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { FaCrown, FaLock } from "react-icons/fa";
 import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";

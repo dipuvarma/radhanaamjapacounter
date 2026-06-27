@@ -2,6 +2,7 @@ import { Cinzel_Decorative, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { JapaStateProvider } from "@/context/JapaStateContext";
+import Footer from "@/components/layout/Footer";
 
 const cinzelDecorative = Cinzel_Decorative({
   variable: "--font-cinzel",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col bg-(--color-lighter-yellow)">
         <Navbar />
         <JapaStateProvider>{children}</JapaStateProvider>
+        <Footer />
       </body>
     </html>
   );
