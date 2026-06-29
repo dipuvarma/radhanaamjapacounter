@@ -1,7 +1,5 @@
 import { HeroSection } from "@/features/chanting-engine";
-import { FaGlobeAmericas } from "react-icons/fa";
-import { FaUsers } from "react-icons/fa";
-import { GiPrayerBeads } from "react-icons/gi";
+import ChallengeSection from "@/components/ChallengeSection";
 
 export default function Home() {
   return (
@@ -12,118 +10,8 @@ export default function Home() {
         imageSrc="/images/radha.jpg"
         altDescription="Lord Radha Ji"
       />
-
-      {/* ===== LIVE STATS BAR ===== */}
-      <section className="max-w-5xl mx-auto rounded-sm bg-gray-50 translate-y-[50%] py-4 px-6">
-        <div className="max-w-5xl mx-auto flex items-center justify-around gap-4">
-          {/* Stat 1 */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-(--color-saffron) rounded-lg flex items-center justify-center text-[#4A1C00] font-bold text-xs border border-white/30">
-              <GiPrayerBeads className="text-xl text-gray-50" />
-            </div>
-            <div>
-              <p className="text-[#4A1C00] font-bold text-xl leading-tight">
-                4.2 Crore+
-              </p>
-              <p className="text-[#4A1C00] text-sm">Japas Chanted</p>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="h-10 w-px bg-black/30 hidden sm:block" />
-
-          {/* Stat 2 */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-(--color-saffron) rounded-lg flex items-center justify-center border border-white/30">
-              <span className="text-[#4A1C00] text-lg">
-                <FaUsers className="text-gray-50 text-xl" />
-              </span>
-            </div>
-            <div>
-              <p className="text-[#4A1C00] font-bold text-xl leading-tight">
-                4,586
-              </p>
-              <p className="text-[#4A1C00] text-sm">Devotees Active</p>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="h-10 w-px bg-black/30 hidden sm:block" />
-
-          {/* Stat 3 */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-(--color-saffron) rounded-lg flex items-center justify-center border border-white/30">
-              <span className="text-[#4A1C00] text-lg">
-                <FaGlobeAmericas className="text-gray-50 text-xl" />
-              </span>
-            </div>
-            <div>
-              <p className="text-[#4A1C00] font-bold text-xl leading-tight">
-                32
-              </p>
-              <p className="text-[#4A1C00] text-sm">Countries</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== HOW TO USE — 3 STEPS ===== */}
-      <section className="w-full bg-gradient-to-br from-(--color-saffron) to-(--color-lighter-yellow) pb-14 pt-30 px-6">
-        <div className="max-w-5xl mx-auto">
-          {/* Heading */}
-          <div className="text-center mb-10">
-            <h2 className="sm:text-5xl text-3xl font-bold text-gray-50">
-              Start Your Japa Journey
-            </h2>
-            <div className="w-16 h-1 bg-[#F37420] rounded-full mx-auto mt-3" />
-          </div>
-
-          {/* 3 Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative">
-            {/* Step 1 */}
-            <div className="bg-gray-50 rounded-sm p-8 text-center outline-1 outline-amber-900">
-              <div className="w-12 h-12 bg-[#F37420] rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-6">
-                1
-              </div>
-              <h3 className="text-lg font-bold text-[#4A1C00] mb-3">
-                Select Your Mantra
-              </h3>
-              <p className="text-[#78350F] text-sm leading-relaxed">
-                Choose from a variety of sacred Radha and Krishna names to begin
-                your daily meditation.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="bg-gray-50 rounded-sm p-8 text-center outline-1 outline-amber-900">
-              <div className="w-12 h-12 bg-[#F37420] rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-6">
-                2
-              </div>
-              <h3 className="text-lg font-bold text-[#4A1C00] mb-3">
-                Digital Mala Counter
-              </h3>
-              <p className="text-[#78350F] text-sm leading-relaxed">
-                Tap to count each bead. Immerse yourself in the sound and
-                rhythmic flow of the mantra.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="bg-gray-50 rounded-sm p-8 text-center outline-1 outline-amber-900">
-              <div className="w-12 h-12 bg-[#F37420] rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-6">
-                3
-              </div>
-              <h3 className="text-lg font-bold text-[#4A1C00] mb-3">
-                Track Your Progress
-              </h3>
-              <p className="text-[#78350F] text-sm leading-relaxed">
-                Watch your spiritual habits grow with beautiful charts and
-                detailed daily stats.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Radha Jap Streak Challenge 2026 section  */}
+      <ChallengeSection />
 
       {/* ===== OUR FEATURES SECTION ===== */}
       <section className="w-full bg-[#FFF8E7] py-16 px-6">

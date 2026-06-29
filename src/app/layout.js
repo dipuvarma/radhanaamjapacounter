@@ -1,14 +1,8 @@
-import { Cinzel_Decorative, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { JapaStateProvider } from "@/context/JapaStateContext";
 import Footer from "@/components/layout/Footer";
-
-const cinzelDecorative = Cinzel_Decorative({
-  variable: "--font-cinzel",
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
-});
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -26,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${cinzelDecorative.variable} ${poppins.variable} h-full antialiased`}
+      className={`${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-(--color-lighter-yellow)">
         <Navbar />

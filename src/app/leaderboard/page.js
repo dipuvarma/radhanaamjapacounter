@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { FaCrown, FaLock } from "react-icons/fa";
 import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
@@ -8,6 +9,7 @@ import { useLeaderboard } from "@/hooks/useLeaderboard";
 export default function LeaderboardPage() {
   const { user, signInWithGoogle } = useAuth();
   const { leaders, loading } = useLeaderboard();
+  const modalRef = useRef(null);
 
   const topThree = leaders.slice(0, 3);
 
@@ -15,6 +17,47 @@ export default function LeaderboardPage() {
   const podiumOrder = [topThree[1], topThree[0], topThree[2]].filter(Boolean);
 
   const otherDevotees = leaders;
+
+  // Focus trap for Sign In modal
+  useEffect(() => {
+    if (user || loading) return;
+    const modalElement = modalRef.current;
+    if (!modalElement) return;
+
+    const focusableElements = modalElement.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    const handleTab = (e) => {
+      if (e.key !== "Tab") return;
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
+      }
+    };
+
+    // Focus the Sign In button initially
+    const timer = setTimeout(() => {
+      firstElement.focus();
+    }, 150);
+
+    modalElement.addEventListener("keydown", handleTab);
+    return () => {
+      clearTimeout(timer);
+      modalElement.removeEventListener("keydown", handleTab);
+    };
+  }, [user, loading]);
 
   return (
     <main
@@ -24,36 +67,37 @@ export default function LeaderboardPage() {
     >
       {/* Background Content with Blur if not signed in */}
       <div
+        aria-hidden={!user ? "true" : undefined}
         className={`${
           !user ? "blur-md pointer-events-none select-none" : ""
         } transition-all duration-500 p-4 sm:p-8 max-w-5xl mx-auto h-full pb-20`}
       >
         {/* Header */}
         <div className="text-center my-6 sm:my-10">
-          <h1 className="text-4xl sm:text-5xl text-amber-900 font-bold mb-3">
+          <h1 className="text-3xl sm:text-5xl text-amber-900 font-bold mb-3">
             Community <span className="text-saffron">Leaderboard</span>
           </h1>
-          <p className="text-amber-800/80 max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-amber-800/80 max-w-xl mx-auto">
             Live rankings for all devotees. Chant with devotion and rise to the
             top of the leaderboard.
           </p>
 
-          <div className="flex justify-center gap-8 sm:gap-16 mt-8 border-b border-amber-100 pb-8">
+          <div className="flex justify-center gap-8 sm:gap-16 mt-8 border-b border-amber-100/50 pb-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-amber-900">
+              <div className="text-2xl sm:text-3xl font-bold text-amber-900">
                 {leaders.length}
               </div>
-              <div className="text-xs font-semibold text-amber-700/70 tracking-wider uppercase mt-1">
+              <div className="text-[10px] sm:text-xs font-semibold text-amber-700/70 tracking-wider uppercase mt-1">
                 Participants
               </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-amber-900">
+              <div className="text-2xl sm:text-3xl font-bold text-amber-900">
                 {leaders
                   .reduce((sum, d) => sum + (d.lifetimeCount || 0), 0)
                   .toLocaleString()}
               </div>
-              <div className="text-xs font-semibold text-amber-700/70 tracking-wider uppercase mt-1">
+              <div className="text-[10px] sm:text-xs font-semibold text-amber-700/70 tracking-wider uppercase mt-1">
                 Total Japas
               </div>
             </div>
@@ -61,9 +105,9 @@ export default function LeaderboardPage() {
         </div>
 
         {/* Podium Section */}
-        <div className="flex justify-center items-end gap-2 sm:gap-6 my-16 h-72">
+        <div className="flex justify-center items-end gap-1.5 sm:gap-6 my-10 sm:my-16 h-72">
           {loading ? (
-            <p className="text-amber-700">Loading...</p>
+            <p className="text-amber-700 font-medium">Loading rankings...</p>
           ) : (
             podiumOrder.map((devotee) => {
               if (!devotee) return null;
@@ -81,19 +125,19 @@ export default function LeaderboardPage() {
                 <div
                   key={devotee.uid}
                   className={`flex flex-col items-center ${
-                    isFirst ? "w-28 sm:w-36 z-10" : "w-24 sm:w-32"
+                    isFirst ? "w-24 sm:w-36 z-10" : "w-20 sm:w-32"
                   }`}
                 >
-                  <div className="relative flex flex-col items-center">
+                  <div className="relative flex flex-col items-center w-full">
                     {isFirst && (
-                      <FaCrown className="text-saffron text-3xl absolute -top-8 drop-shadow-md" />
+                      <FaCrown className="text-saffron text-2xl sm:text-3xl absolute -top-7 sm:text-3xl drop-shadow-md" />
                     )}
                     <div
                       className={`relative rounded-full overflow-hidden border-4 ${
                         isFirst
-                          ? "border-saffron w-20 h-20 sm:w-24 sm:h-24"
-                          : "border-white w-16 h-16 sm:w-20 sm:h-20"
-                      } shadow-md bg-white mb-3`}
+                          ? "border-saffron w-16 h-16 sm:w-24 sm:h-24"
+                          : "border-white w-12 h-12 sm:w-20 sm:h-20"
+                      } shadow-md bg-white mb-2.5`}
                     >
                       {devotee.photoURL ? (
                         <Image
@@ -103,28 +147,28 @@ export default function LeaderboardPage() {
                           className="object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-saffron font-bold text-xl">
+                        <div className="w-full h-full flex items-center justify-center text-saffron font-bold text-lg sm:text-xl">
                           {devotee.name?.charAt(0) || "?"}
                         </div>
                       )}
                     </div>
-                    <p className="font-bold text-amber-950 text-center truncate w-full px-1 text-sm sm:text-base">
+                    <p className="font-bold text-amber-950 text-center truncate w-full px-1 text-xs sm:text-base">
                       {devotee.name}
                     </p>
                     <p
-                      className={`text-sm font-bold mb-4 ${
-                        isFirst ? "text-saffron" : "text-amber-700"
+                      className={`text-[11px] sm:text-sm font-bold mb-3 ${
+                        isFirst ? "text-saffron font-extrabold" : "text-amber-700"
                       }`}
                     >
                       {devotee.lifetimeCount?.toLocaleString()} pts
                     </p>
                   </div>
                   <div
-                    className={`w-full ${heightClass} ${bgClass} rounded-t-xl flex justify-center pt-6 relative overflow-hidden`}
+                    className={`w-full ${heightClass} ${bgClass} rounded-t-xl flex justify-center pt-5 relative overflow-hidden`}
                   >
                     <div className="absolute inset-0 bg-white/10 opacity-50"></div>
                     <div
-                      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-inner ${
+                      className={`w-8 h-8 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-sm sm:text-xl shadow-inner ${
                         isFirst
                           ? "bg-amber-100/30 text-white border border-white/30"
                           : "bg-amber-50/50 text-amber-900"
@@ -141,8 +185,8 @@ export default function LeaderboardPage() {
 
         {/* List Section */}
         <div className="bg-white rounded-2xl shadow-sm border border-amber-200/50 overflow-hidden mt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 sm:p-6 border-b border-amber-100 bg-amber-50/30 gap-4">
-            <h2 className="text-xl font-bold text-amber-900">All Rankings</h2>
+          <div className="flex justify-between items-center p-4 sm:p-6 border-b border-amber-100 bg-amber-50/30">
+            <h2 className="text-lg sm:text-xl font-bold text-amber-900">All Rankings</h2>
           </div>
 
           <div className="bg-amber-50/10 px-6 py-3 border-b border-amber-100 hidden sm:grid grid-cols-12 gap-4 text-xs font-bold text-amber-700/60 uppercase tracking-wider">
@@ -155,41 +199,41 @@ export default function LeaderboardPage() {
             {otherDevotees.map((devotee) => (
               <div
                 key={devotee.uid}
-                className="grid grid-cols-12 gap-4 items-center p-4 sm:px-6 hover:bg-amber-50/50 transition-colors"
+                className="grid grid-cols-12 gap-2 sm:gap-4 items-center p-4 sm:px-6 hover:bg-amber-50/50 transition-colors"
               >
                 <div className="col-span-2 sm:col-span-1 flex justify-center sm:justify-start">
-                  <span className="text-lg font-bold text-amber-900/50">
+                  <span className="text-base sm:text-lg font-bold text-amber-900/50">
                     {devotee.rank}
                   </span>
                 </div>
 
-                <div className="col-span-6 sm:col-span-8 flex items-center gap-3 sm:gap-4">
-                  <div className="w-10 h-10 rounded-full bg-saffron/20 flex items-center justify-center text-saffron font-bold border border-saffron/30 shrink-0 overflow-hidden">
+                <div className="col-span-6 sm:col-span-8 flex items-center gap-2.5 sm:gap-4">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-saffron/20 flex items-center justify-center text-saffron font-bold border border-saffron/30 shrink-0 overflow-hidden relative">
                     {devotee.photoURL ? (
                       <Image
                         src={devotee.photoURL}
                         alt={devotee.name}
-                        width={40}
-                        height={40}
+                        fill
+                        sizes="40px"
                         className="object-cover"
                       />
                     ) : (
                       devotee.name?.charAt(0) || "?"
                     )}
                   </div>
-                  <div>
-                    <p className="font-bold text-amber-950">{devotee.name}</p>
-                    <p className="text-xs text-amber-700/70 mt-0.5">
+                  <div className="min-w-0">
+                    <p className="font-bold text-amber-950 text-sm sm:text-base truncate">{devotee.name}</p>
+                    <p className="text-[10px] sm:text-xs text-amber-700/70 mt-0.5">
                       Best Streak: {devotee.longestStreak}
                     </p>
                   </div>
                 </div>
 
                 <div className="col-span-4 sm:col-span-3 text-right">
-                  <p className="font-bold text-amber-900 sm:text-lg">
+                  <p className="font-bold text-amber-900 text-sm sm:text-lg">
                     {devotee.lifetimeCount?.toLocaleString()}
                   </p>
-                  <p className="text-[10px] sm:text-xs text-amber-700/60 font-semibold uppercase">
+                  <p className="text-[9px] sm:text-xs text-amber-700/60 font-semibold uppercase">
                     Points
                   </p>
                 </div>
@@ -201,24 +245,30 @@ export default function LeaderboardPage() {
 
       {/* Overlay modal for Sign In */}
       {!user && (
-        <div className="absolute inset-0 flex items-start pt-10 justify-center z-50 bg-amber-950/20 backdrop-blur-[2px] -mx-4 sm:-mx-8 rounded-t-3xl sm:rounded-t-none">
-          <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl max-w-md w-full mx-4 text-center border border-amber-100 transform transition-all">
-            <div className="w-20 h-20 bg-orange-saffron/30 rounded-full flex items-center justify-center mx-auto mb-6 relative">
-              <div className="absolute inset-2 bg-white rounded-full flex items-center justify-center">
-                <FaLock className="w-8 h-8 text-saffron" />
+        <div 
+          ref={modalRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+          className="fixed inset-0 flex items-center justify-center z-50 bg-amber-950/40 backdrop-blur-sm p-4"
+        >
+          <div className="bg-[#FFFDF9] p-6 sm:p-10 rounded-3xl shadow-2xl max-w-md w-full text-center border border-amber-100 transform transition-all duration-300">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-orange-saffron/20 rounded-full flex items-center justify-center mx-auto mb-6 relative border border-orange-saffron/30">
+              <div className="absolute inset-1.5 bg-white rounded-full flex items-center justify-center">
+                <FaLock className="w-6 h-6 sm:w-8 sm:h-8 text-saffron" />
               </div>
             </div>
-            <h2 className="text-3xl font-bold text-amber-950 mb-3">
+            <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold text-amber-950 mb-3">
               Unlock Leaderboard
             </h2>
-            <p className="text-amber-800 mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-amber-900/90 mb-8 leading-relaxed font-medium">
               Sign in to save your chanting progress, climb the ranks, and see
               your standing among fellow devotees worldwide.
             </p>
             <div className="flex flex-col gap-3">
               <button
                 onClick={signInWithGoogle}
-                className="w-full bg-saffron hover:bg-[#e0681b] text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg shadow-saffron/25 active:scale-[0.98]"
+                className="w-full bg-[#F37420] hover:bg-[#e2620c] text-white font-bold py-3 px-4 rounded-xl transition-all shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-95 cursor-pointer focus:outline-3 focus:outline-offset-2 focus:outline-amber-600"
               >
                 Sign In with Google
               </button>

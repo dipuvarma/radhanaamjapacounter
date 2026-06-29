@@ -104,94 +104,105 @@ const page = () => {
 
   return (
     <main className="flex-1 max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-gray-900">Statistics</h1>
-      <section className="grid grid-cols-2 md:grid-cols-5 md:gap-4 gap-2">
-        <div className="md:col-span-2 bg-amber-800 text-gray-50 p-2 rounded-sm flex items-center gap-2">
-          <div className="flex flex-col gap-2">
-            <p className="text-sm text-gray-100">Current Streaks</p>
-            <p className="text-4xl font-semibold">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-amber-950">Statistics Dashboard</h1>
+      
+      {/* Overview Cards */}
+      <section aria-label="Statistics overview" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5 mb-8">
+        
+        {/* Streaks Card */}
+        <div className="col-span-2 bg-[#F37420] text-[#FFFDF9] p-4 rounded-xl flex items-center justify-between gap-3 shadow-md border border-amber-600/30">
+          <div className="flex flex-col gap-1">
+            <p className="text-xs uppercase tracking-wider text-amber-100 font-semibold">Current Streaks</p>
+            <p className="text-3xl font-black">
               {summary.currentStreak}{" "}
-              {summary.currentStreak === 1 ? "day" : "days"}
+              <span className="text-sm font-normal font-poppins">{summary.currentStreak === 1 ? "day" : "days"}</span>
             </p>
-            <p className="text-xs text-gray-200">
+            <p className="text-[10px] text-amber-50/80 font-medium">
               {summary.currentStreak > 0
-                ? "Great Start! See you tomorrow!"
-                : "Start chanting today to build your streak!"}
+                ? "Great Consistency! Keep chanting!"
+                : "Chant today to start your streak!"}
             </p>
           </div>
-          <div>
-            <FaFire className="text-5xl" />
+          <div className="bg-white/10 p-2.5 rounded-lg">
+            <FaFire className="text-3xl text-amber-100" />
           </div>
         </div>
-        <div className="bg-gray-50 outline-1 outline-amber-800 p-2 rounded-sm flex flex-col justify-center gap-2 items-center">
-          <div>
-            <GiPrayerBeads className="text-3xl text-amber-800" />
+
+        {/* Today Japa */}
+        <div className="col-span-1 bg-[#FFFDF9] border border-amber-200/80 p-4 rounded-xl flex flex-col justify-center gap-2 items-center text-center shadow-xs hover:border-amber-500/30 transition-all duration-200">
+          <div className="p-2 bg-amber-50 rounded-lg">
+            <GiPrayerBeads className="text-2xl text-[#F37420]" />
           </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm text-amber-900 text-center">Today Japa</p>
-            <p className="text-4xl font-semibold text-center text-amber-900">
+          <div className="flex flex-col">
+            <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide">Today Japa</p>
+            <p className="text-2xl font-bold text-amber-950 mt-1">
               {todayJapaCount}
             </p>
           </div>
         </div>
-        <div className="bg-gray-50 outline-1 outline-amber-800 p-2 rounded-sm flex flex-col justify-center gap-2 items-center">
-          <div>
-            <FaRegUser className="text-3xl text-amber-800" />
+
+        {/* Lifetime Chants */}
+        <div className="col-span-1 bg-[#FFFDF9] border border-amber-200/80 p-4 rounded-xl flex flex-col justify-center gap-2 items-center text-center shadow-xs hover:border-amber-500/30 transition-all duration-200">
+          <div className="p-2 bg-amber-50 rounded-lg">
+            <FaRegUser className="text-2xl text-[#F37420]" />
           </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm text-amber-900 text-center">Life Time</p>
-            <p className="text-4xl font-semibold text-center text-amber-900">
+          <div className="flex flex-col">
+            <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide">Life Time</p>
+            <p className="text-2xl font-bold text-amber-950 mt-1">
               {summary.lifetimeCount}
             </p>
           </div>
         </div>
-        <div className="bg-gray-50 outline-1 outline-amber-800 p-2 rounded-sm flex flex-col justify-center gap-2 items-center">
-          <div>
-            <GiSandsOfTime className="text-3xl text-amber-800" />
+
+        {/* Total Duration */}
+        <div className="col-span-2 sm:col-span-1 bg-[#FFFDF9] border border-amber-200/80 p-4 rounded-xl flex flex-col justify-center gap-2 items-center text-center shadow-xs hover:border-amber-500/30 transition-all duration-200">
+          <div className="p-2 bg-amber-50 rounded-lg">
+            <GiSandsOfTime className="text-2xl text-[#F37420]" />
           </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm text-amber-900 text-center">Total Time</p>
-            <p className="text-4xl font-semibold text-center text-amber-900">
-              {totalMinutes} Min
+          <div className="flex flex-col">
+            <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide">Total Time</p>
+            <p className="text-2xl font-bold text-amber-950 mt-1">
+              {totalMinutes} <span className="text-xs font-medium text-amber-800">Min</span>
             </p>
           </div>
         </div>
-      </section>
 
-      {/* Weekly Progress  */}
-      <section className="mt-8 bg-gray-50 outline-1 outline-amber-800/30 p-6 rounded-sm shadow-sm border border-amber-900/10">
-        <div className="flex justify-between items-center mb-6">
+      </section>
+ 
+      {/* Weekly Progress Section */}
+      <section aria-labelledby="weekly-title" className="bg-[#FFFDF9] border border-amber-900/10 p-5 sm:p-6 rounded-xl shadow-xs mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
           <div>
-            <h2 className="text-xl font-semibold text-amber-900">
+            <h2 id="weekly-title" className="text-lg sm:text-xl font-bold text-amber-950 font-poppins">
               Weekly Progress
             </h2>
-            <p className="text-sm text-amber-800">{rangeLabel}</p>
+            <p className="text-xs sm:text-sm text-amber-700 font-medium">{rangeLabel}</p>
           </div>
-          <div className="text-right">
-            <p className="text-xs text-amber-800 font-medium uppercase tracking-wider">
+          <div className="text-left sm:text-right">
+            <p className="text-[10px] sm:text-xs text-amber-800 font-bold uppercase tracking-wider">
               Total Japa
             </p>
-            <p className="text-2xl font-bold text-amber-950">{total}</p>
+            <p className="text-2xl font-extrabold text-[#F37420]">{total}</p>
           </div>
         </div>
-
-        <div className="w-full h-64">
+ 
+        <div className="w-full h-56 sm:h-64">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={chartData}
-              margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+              margin={{ top: 10, right: 10, left: -25, bottom: 0 }}
             >
               <defs>
                 <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#F37420" stopOpacity={0.9} />
-                  <stop offset="100%" stopColor="#F9BB4D" stopOpacity={0.6} />
+                  <stop offset="0%" stopColor="#F37420" stopOpacity={0.95} />
+                  <stop offset="100%" stopColor="#F9BB4D" stopOpacity={0.65} />
                 </linearGradient>
               </defs>
               <XAxis
                 dataKey="day"
                 tickLine={false}
                 axisLine={false}
-                tick={{ fill: "#78350f", fontSize: 13, fontWeight: 500 }}
+                tick={{ fill: "#78350f", fontSize: 12, fontWeight: 600 }}
               />
               <YAxis
                 tickLine={false}
@@ -199,43 +210,47 @@ const page = () => {
                 tick={{ fill: "#78350f", fontSize: 11 }}
               />
               <Tooltip
-                cursor={{ fill: "rgba(120, 53, 15, 0.05)" }}
+                cursor={{ fill: "rgba(243, 116, 32, 0.04)" }}
                 contentStyle={{
-                  backgroundColor: "#fffbeb",
-                  border: "1px solid #d97706",
-                  borderRadius: "4px",
+                  backgroundColor: "#fffdf9",
+                  border: "1px solid #f37420",
+                  borderRadius: "8px",
+                  fontSize: "12px",
                   fontFamily: "var(--font-poppins)",
                 }}
                 labelStyle={{ color: "#78350f", fontWeight: "bold" }}
-                itemStyle={{ color: "#F37420" }}
+                itemStyle={{ color: "#F37420", fontWeight: "600" }}
               />
               <Bar
                 dataKey="japa"
                 fill="url(#barGradient)"
-                barSize={32}
-                radius={[8, 8, 0, 0]}
+                barSize={28}
+                radius={[6, 6, 0, 0]}
               />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </section>
-
+ 
       {/* Monthly Progress Section */}
-      <section className="mt-8 bg-gray-50 outline-1 outline-amber-800/30 p-6 rounded-sm shadow-sm border border-amber-900/10">
-        <h2 className="text-xl font-semibold text-amber-900 mb-2">Monthly Progress</h2>
-        <p className="text-sm text-amber-800 mb-6">{monthName} {new Date().getFullYear()}</p>
-
+      <section aria-labelledby="monthly-title" className="bg-[#FFFDF9] border border-amber-900/10 p-5 sm:p-6 rounded-xl shadow-xs">
+        <h2 id="monthly-title" className="text-lg sm:text-xl font-bold text-amber-950">Monthly Progress</h2>
+        <p className="text-xs sm:text-sm text-amber-700 font-medium mb-6">{monthName} {new Date().getFullYear()}</p>
+ 
         {/* Heatmap Grid */}
-        <div className="grid grid-cols-7 sm:grid-cols-10 gap-3 max-w-2xl">
+        <div 
+          role="grid"
+          aria-label={`Heatmap grid for ${monthName}`}
+          className="grid grid-cols-7 sm:grid-cols-9 md:grid-cols-11 gap-2 max-w-3xl"
+        >
           {heatmapData.map((day) => {
             let bgStyle = {};
-            let borderClass = "border border-amber-800/20";
+            let borderClass = "border border-amber-800/15";
             let tooltipText = `${day.dayNum} ${monthName}: No chants`;
-
+ 
             if (day.count === 0) {
-              // Diagonal stripes for unchanted days, matching the mockup!
               bgStyle = {
-                background: "repeating-linear-gradient(45deg, #fafaf9, #fafaf9 4px, #ebd5c0 4px, #ebd5c0 8px)",
+                background: "repeating-linear-gradient(45deg, #fcfcfc, #fcfcfc 3px, #f4e8dc 3px, #f4e8dc 6px)",
               };
             } else {
               tooltipText = `${day.dayNum} ${monthName}: ${day.count} chants`;
@@ -244,55 +259,61 @@ const page = () => {
               } else if (day.count < 540) {
                 bgStyle = { backgroundColor: "#FAD199" };
               } else if (day.count < 1080) {
-                bgStyle = { backgroundColor: "#F37420" };
+                bgStyle = { backgroundColor: "#F37420", color: "#fff" };
               } else {
                 bgStyle = { backgroundColor: "#F9BB4D" };
               }
-              borderClass = "border border-amber-600 shadow-[0_0_8px_rgba(243,116,32,0.2)]";
+              borderClass = "border border-amber-600/65 shadow-xs";
             }
-
+ 
             return (
               <div
                 key={day.dateStr}
                 style={bgStyle}
-                className={`aspect-square rounded-md flex items-center justify-center text-xs font-semibold relative group cursor-pointer transition-all duration-300 hover:scale-105 ${borderClass} ${
-                  day.count > 0 ? "text-amber-950" : "text-amber-800/50"
-                }`}
+                role="gridcell"
+                tabIndex={0}
+                aria-label={tooltipText}
+                className={`aspect-square rounded-lg flex items-center justify-center text-[10px] sm:text-xs font-bold relative group cursor-pointer transition-all duration-200 hover:scale-105 ${borderClass} ${
+                  day.count > 0 && day.count < 540 ? "text-amber-950" : "text-amber-900/60"
+                } focus:outline-2 focus:outline-offset-2 focus:outline-amber-600`}
               >
                 {day.dayNum}
-
-                {/* Tooltip on hover */}
-                <div className="absolute bottom-full mb-2 hidden group-hover:block z-10 bg-amber-950 text-amber-50 text-[10px] py-1 px-2 rounded-sm shadow-md whitespace-nowrap pointer-events-none">
+ 
+                {/* Tooltip on hover/focus */}
+                <div 
+                  role="tooltip"
+                  className="absolute bottom-full mb-2 hidden group-hover:block group-focus:block z-10 bg-amber-950 text-amber-50 text-[10px] py-1 px-2.5 rounded-md shadow-md whitespace-nowrap pointer-events-none"
+                >
                   {tooltipText}
                 </div>
               </div>
             );
           })}
         </div>
-
+ 
         {/* Legend */}
-        <div className="flex gap-4 items-center mt-6 text-xs text-amber-800 border-t border-amber-800/10 pt-4 flex-wrap">
+        <div className="flex gap-4 items-center mt-6 border-t border-amber-900/10 pt-4 flex-wrap text-xs text-amber-900 font-medium">
           <div className="flex items-center gap-1.5">
             <div 
-              style={{ background: "repeating-linear-gradient(45deg, #fafaf9, #fafaf9 2px, #ebd5c0 2px, #ebd5c0 4px)" }}
-              className="w-4 h-4 rounded-sm border border-amber-800/20"
+              style={{ background: "repeating-linear-gradient(45deg, #fcfcfc, #fcfcfc 2px, #f4e8dc 2px, #f4e8dc 4px)" }}
+              className="w-4.5 h-4.5 rounded-md border border-amber-800/15"
             />
             <span>0 chants</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded-sm border border-amber-600" style={{ backgroundColor: "#FAE6B8" }} />
+            <div className="w-4.5 h-4.5 rounded-md border border-amber-500/40" style={{ backgroundColor: "#FAE6B8" }} />
             <span>&lt; 108</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded-sm border border-amber-600" style={{ backgroundColor: "#FAD199" }} />
+            <div className="w-4.5 h-4.5 rounded-md border border-amber-500/40" style={{ backgroundColor: "#FAD199" }} />
             <span>108+</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded-sm border border-amber-600" style={{ backgroundColor: "#F37420" }} />
+            <div className="w-4.5 h-4.5 rounded-md border border-amber-500/40" style={{ backgroundColor: "#F37420" }} />
             <span>540+</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded-sm border border-amber-600 shadow-[0_0_8px_rgba(243,116,32,0.2)]" style={{ backgroundColor: "#F9BB4D" }} />
+            <div className="w-4.5 h-4.5 rounded-md border border-amber-500/40 shadow-xs" style={{ backgroundColor: "#F9BB4D" }} />
             <span>1080+</span>
           </div>
         </div>

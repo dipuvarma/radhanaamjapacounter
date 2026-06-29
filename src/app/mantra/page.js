@@ -84,16 +84,20 @@ const MantraPage = () => {
       </div>
 
       {/* Grid */}
-      <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div 
+        role="list"
+        aria-label="List of available mantras for japa chanting"
+        className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
         {mantras.map((mantra) => (
           <div
             key={mantra.id}
-            className="mantra-card group rounded-md overflow-hidden"
+            role="listitem"
+            className="mantra-card group rounded-2xl overflow-hidden hover:-translate-y-1 transition-all duration-300"
             style={{
               background: "#fff8ee",
               border: "1.5px solid #FAD199",
-              boxShadow: "0 2px 16px 0 rgba(243,116,32,0.07)",
-              transition: "box-shadow 0.25s, transform 0.25s",
+              boxShadow: "0 4px 20px 0 rgba(243,116,32,0.06)",
             }}
           >
             {/* Image */}
@@ -105,8 +109,7 @@ const MantraPage = () => {
                 src={mantra.image}
                 alt={mantra.deity}
                 fill
-                className="object-cover"
-                style={{ transition: "transform 0.4s" }}
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               {/* Gradient overlay */}
@@ -125,7 +128,7 @@ const MantraPage = () => {
                 {mantra.deity}
               </span>
             </div>
-
+ 
             {/* Content */}
             <div className="p-5 flex flex-col gap-3">
               <h2
@@ -135,22 +138,22 @@ const MantraPage = () => {
                 {mantra.name}
               </h2>
               <p
-                className="paragraph-text leading-relaxed"
+                className="paragraph-text leading-relaxed font-medium text-xs sm:text-sm"
                 style={{ color: "#7a5c2e" }}
               >
                 {mantra.description}
               </p>
-
+ 
               {/* Button */}
               <Link
                 href={mantra.href}
-                className="mt-1 inline-flex items-center justify-center gap-2 rounded-sm px-5 py-2.5 font-semibold button-text"
+                aria-label={`Start chanting ${mantra.name}`}
+                className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-bold button-text transition-all duration-200 hover:scale-[1.01] active:scale-95 cursor-pointer focus:outline-3 focus:outline-offset-2 focus:outline-amber-600"
                 style={{
                   background:
                     "linear-gradient(135deg, #F37420 0%, #F9BB4D 100%)",
                   color: "#fff",
-                  boxShadow: "0 2px 8px rgba(243,116,32,0.25)",
-                  transition: "filter 0.2s, box-shadow 0.2s",
+                  boxShadow: "0 4px 12px rgba(243,116,32,0.22)",
                   textDecoration: "none",
                 }}
               >

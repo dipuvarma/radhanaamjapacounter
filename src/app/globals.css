@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-cinzel: var(--font-cinzel);
   --font-poppins: var(--font-poppins);
 
   --color-saffron: #f37420;
@@ -16,10 +15,6 @@ body {
 
 .primary-heading {
   @apply sm:text-xl md:text-2xl lg:text-3xl;
-}
-
-.cinzel-heading {
-  font-family: var(--font-cinzel), serif;
 }
 
 .secondary-heading {
