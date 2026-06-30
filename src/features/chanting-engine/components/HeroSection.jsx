@@ -46,7 +46,7 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
       className="w-full min-h-screen relative select-none"
     >
       <section className="mx-auto px-4 py-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 sm:gap-3 md:gap-4 items-center">
           {/* Audio Mute and Unmute Toggle  */}
           <div
             className="col-span-1 flex items-center gap-1.5 order-2 md:order-1 cursor-pointer select-none"

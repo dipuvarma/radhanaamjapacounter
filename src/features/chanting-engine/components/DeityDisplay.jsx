@@ -3,7 +3,7 @@ import BeadCircle from "./BeadCircle";
 
 const DeityDisplay = ({ imgSrc, altDescription }) => {
   return (
-    <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
+    <div className="relative sm:mt-0 mt-6 w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
       <BeadCircle />
 
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

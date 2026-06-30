@@ -10,10 +10,6 @@ const ChallengeSection = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleToggleDetails = () => {
-    setShowDetails((prev) => !prev);
-  };
-
   const currentMonth = getCurrentMonth();
 
   return (
