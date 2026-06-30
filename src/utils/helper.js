@@ -94,3 +94,25 @@ export const updateDurationAnalytics = (secondsToAdd) => {
   saveAnalyticsData(data);
   return data;
 };
+
+export const getCurrentMonth = () => {
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  return months[currentMonth];
+};

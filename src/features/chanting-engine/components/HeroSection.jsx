@@ -41,7 +41,10 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
   };
 
   return (
-    <section onClick={handleJapaCount} className="w-full relative select-none">
+    <section
+      onClick={handleJapaCount}
+      className="w-full min-h-screen relative select-none"
+    >
       <section className="mx-auto px-4 py-4">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 items-center">
           {/* Audio Mute and Unmute Toggle  */}
