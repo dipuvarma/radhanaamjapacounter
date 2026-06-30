@@ -4,14 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { PiFlowerLotusFill } from "react-icons/pi";
-import { TbSettings } from "react-icons/tb";
+import { FcGoogle } from "react-icons/fc";
+import { IoLogOut } from "react-icons/io5";
 import { FiMenu, FiX } from "react-icons/fi";
+import { useAuth } from "@/hooks/useAuth";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const hamburgerRef = useRef(null);
+
+  const { signInWithGoogle, user, logout } = useAuth();
 
   const navLinks = [
     {
@@ -66,7 +70,7 @@ const Navbar = () => {
     if (!menuElement) return;
 
     const focusableElements = menuElement.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
     );
     if (focusableElements.length === 0) return;
 
@@ -105,14 +109,27 @@ const Navbar = () => {
       <section className="max-w-4xl bg-gradient-to-r from-amber-50 via-gray-50 to-amber-50 outline-1 outline-amber-300 shadow-sm mx-auto my-2 rounded-md flex justify-between items-center px-4 py-2">
         {/* Logo / Home link */}
         <div className="flex items-center">
-          <Link href="/" className="flex items-center gap-1.5 focus:outline-2 focus:outline-offset-4 focus:outline-amber-600 rounded-sm" aria-label="Radhanaam Japa Counter - Go to Home">
-            <PiFlowerLotusFill aria-hidden="true" size={26} className="text-amber-700" />
-            <span className="text-amber-900 font-bold text-base sm:text-lg tracking-wide">Radha Naam</span>
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 focus:outline-2 focus:outline-offset-4 focus:outline-amber-600 rounded-sm"
+            aria-label="Radhanaam Japa Counter - Go to Home"
+          >
+            <PiFlowerLotusFill
+              aria-hidden="true"
+              size={26}
+              className="text-amber-700"
+            />
+            <span className="text-amber-900 font-bold text-base sm:text-lg tracking-wide">
+              Radha Naam
+            </span>
           </Link>
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex gap-4 items-center" aria-label="Main navigation">
+        <nav
+          className="hidden md:flex gap-4 items-center"
+          aria-label="Main navigation"
+        >
           {navLinks.map(({ pathName, pathSrc }) => {
             const isActive = pathname === pathSrc;
             return (
@@ -133,18 +150,26 @@ const Navbar = () => {
         </nav>
 
         {/* Actions (Settings + Hamburger) */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1  sm:gap-2">
           {/* Settings button on desktop */}
-          <button
-            aria-label="Open Settings"
-            className="p-2 aspect-square outline-1 rounded-md outline-amber-300 bg-amber-50 hover:bg-amber-100 transition-all cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-amber-500"
-          >
-            <TbSettings
-              aria-hidden="true"
-              size={20}
-              className="text-amber-900"
-            />
-          </button>
+          {!user ? (
+            <button
+              aria-label="Sign in with Google"
+              onClick={signInWithGoogle}
+              className="p-2 flex items-center gap-2 outline-1 rounded-md outline-amber-300 text-amber-900 font-semibold bg-amber-100 hover:bg-amber-100 transition-all cursor-pointer sm:text-sm text-xs focus:outline-2 focus:outline-offset-2 focus:outline-amber-500"
+            >
+              <FcGoogle className="sm:text-xl text-sm" /> Sign In
+            </button>
+          ) : (
+            <button
+              aria-label="Logout"
+              onClick={logout}
+              className="p-2 flex items-center gap-2 outline-1 rounded-md outline-red-300 text-amber-900 font-semibold bg-amber-100 hover:bg-amber-100 transition-all cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-amber-500 text-sm"
+            >
+              <IoLogOut className="text-xl" />
+              Logout
+            </button>
+          )}
 
           {/* Hamburger button on mobile */}
           <button

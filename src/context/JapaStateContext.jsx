@@ -31,7 +31,7 @@ export const JapaStateProvider = ({ children }) => {
         setElapseSeconds((prev) => prev + 1);
         const updatedData = updateDurationAnalytics(10);
         setAnalytics(updatedData);
-      }, 10000);
+      }, 1000);
     }
 
     return () => {

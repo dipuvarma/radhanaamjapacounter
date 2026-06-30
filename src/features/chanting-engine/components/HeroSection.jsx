@@ -4,15 +4,15 @@ import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
 
 import { useJapaState } from "@/hooks/useJapaState";
 import { CounterPanel, DeityDisplay } from "..";
-import Link from "next/link";
 import useSound from "use-sound";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import confetti from "canvas-confetti";
 
 const HeroSection = ({ imageSrc, altDescription, title }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const { handleIncreaseJapaCount } = useJapaState();
+  const { handleIncreaseJapaCount, japaCount } = useJapaState();
   const [isSoundOn, setIsSoundOn] = useState(false);
 
   const [play] = useSound("/audio/radha-radha.mp3", {
@@ -29,6 +29,14 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
     handleIncreaseJapaCount();
     if (isSoundOn) {
       play();
+    }
+    if (japaCount > 0 && japaCount % 108 == 0) {
+      confetti({
+        particleCount: 300,
+        spread: 450,
+        origin: { y: 0.6 },
+        colors: ["#f9bb4d", "#f37420", "#fae6b8", "#fad199"],
+      });
     }
   };
 
@@ -139,16 +147,6 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
 
         <CounterPanel />
         <DeityDisplay imgSrc={imageSrc} altDescription={altDescription} />
-
-        <div className="flex justify-end">
-          <Link
-            href="/statistics"
-            onClick={(e) => e.stopPropagation()}
-            className="px-4 py-2 hover:bg-gray-100 bg-white outline-1 outline-amber-800 rounded-md fixed right-10 bottom-10"
-          >
-            Statistics
-          </Link>
-        </div>
       </section>
     </section>
   );

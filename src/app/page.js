@@ -1,5 +1,6 @@
 import { HeroSection } from "@/features/chanting-engine";
 import ChallengeSection from "@/components/ChallengeSection";
+import DownloadAppCTA from "@/components/DownloadAppCTA";
 
 export default function Home() {
   return (
@@ -115,6 +116,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* App Download CTA Section  */}
+      <DownloadAppCTA />
     </main>
   );
 }
