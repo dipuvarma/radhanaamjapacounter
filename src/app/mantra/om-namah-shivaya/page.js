@@ -1,8 +1,114 @@
 import { HeroSection } from "@/features/chanting-engine";
 
+export const metadata = {
+  title: "Om Namah Shivaya Jap Counter \u2014 Shiva Mantra Tracker Online",
+  description:
+    "Count your Om Namah Shivaya japa online. Learn the benefits of the Shiva Panchakshara mantra and track your daily sadhana with our free digital mala counter.",
+  keywords: [
+    "om namah shivaya counter",
+    "shiva mantra japa",
+    "panchakshara mantra counter",
+    "shiv mantra tracker",
+    "om namah shivaya benefits",
+    "lord shiva japa counter",
+    "digital mala shiva",
+  ],
+  alternates: { canonical: "https://radhanaamjapa.com/mantra/om-namah-shivaya" },
+  openGraph: {
+    title: "Om Namah Shivaya Jap Counter \u2014 Shiva Mantra Tracker Online",
+    description:
+      "Count your Om Namah Shivaya japa and connect with Lord Shiva's cosmic energy. Free online Shiva mantra counter.",
+    url: "https://radhanaamjapa.com/mantra/om-namah-shivaya",
+    type: "website",
+    siteName: "Radha Naam Japa Counter",
+    images: [
+      {
+        url: "/images/shivji.png",
+        width: 1200,
+        height: 630,
+        alt: "Om Namah Shivaya \u2014 Shiva Mantra Japa Counter",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@radhanaamjapa",
+    creator: "@radhanaamjapa",
+    title: "Om Namah Shivaya Jap Counter",
+    description: "Count your Om Namah Shivaya japa and track your daily sadhana for free.",
+    images: ["/images/shivji.png"],
+  },
+};
+
+const faqs = [
+  {
+    q: "What does 'Om Namah Shivaya' mean?",
+    a: "Om Namah Shivaya means 'I bow to Lord Shiva'. The five syllables Na-Ma-Shi-Va-Ya represent the five elements (earth, water, fire, air, space) and the five acts of Shiva (creation, sustenance, dissolution, concealment, and grace).",
+  },
+  {
+    q: "When is the best time to chant Om Namah Shivaya?",
+    a: "Monday is traditionally Lord Shiva's day. The mantra is especially powerful during Pradosh Kaal (1.5 hours before sunset), Maha Shivaratri, and Shravan month. Morning chanting at Brahma Muhurta is highly recommended.",
+  },
+  {
+    q: "How many times should I chant Om Namah Shivaya?",
+    a: "Chanting 108 times (one mala) daily is the standard. Dedicated Shiva devotees may chant 5 malas (540 times) daily. On Maha Shivaratri, all-night chanting is considered extremely auspicious.",
+  },
+  {
+    q: "Is Om Namah Shivaya suitable for beginners?",
+    a: "Absolutely! Om Namah Shivaya is one of the simplest and most powerful mantras. It requires no initiation and can be chanted by anyone, anywhere, at any time with sincere devotion.",
+  },
+];
+
 export default function OmNamahShivaya() {
   return (
     <main className="flex-1">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://radhanaamjapa.com/" },
+                  { "@type": "ListItem", position: 2, name: "Mantras", item: "https://radhanaamjapa.com/mantra" },
+                  { "@type": "ListItem", position: 3, name: "Om Namah Shivaya", item: "https://radhanaamjapa.com/mantra/om-namah-shivaya" },
+                ],
+              },
+              {
+                "@type": "Article",
+                headline: "Om Namah Shivaya \u2014 Benefits of the Shiva Panchakshara Mantra",
+                description: "Learn the benefits of the Shiva Panchakshara Mantra Om Namah Shivaya and track your japa with our free online counter.",
+                url: "https://radhanaamjapa.com/mantra/om-namah-shivaya",
+                inLanguage: "en",
+                about: { "@type": "Thing", name: "Om Namah Shivaya Shiva Mantra" },
+                publisher: { "@id": "https://radhanaamjapa.com/#organization" },
+              },
+              {
+                "@type": "HowTo",
+                name: "How to Chant Om Namah Shivaya",
+                step: [
+                  { "@type": "HowToStep", text: "Sit facing North or East, preferably near a Shiva lingam or image." },
+                  { "@type": "HowToStep", text: "Take a few deep breaths to calm your mind." },
+                  { "@type": "HowToStep", text: "Begin chanting 'Om Namah Shivaya' slowly and clearly, feeling each syllable resonate." },
+                  { "@type": "HowToStep", text: "Tap this counter for each mantra repetition." },
+                  { "@type": "HowToStep", text: "Complete 108 repetitions for one mala and press End Session to save your Japa Points." },
+                ],
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: faqs.map((f) => ({
+                  "@type": "Question",
+                  name: f.q,
+                  acceptedAnswer: { "@type": "Answer", text: f.a },
+                })),
+              },
+            ],
+          }),
+        }}
+      />
       <HeroSection
         title="Om Namah Shivaya"
         imageSrc="/images/shivji.png"
@@ -28,7 +134,7 @@ export default function OmNamahShivaya() {
               Why do we chant it?
             </h3>
             <p className="text-[#78350F] text-xs sm:text-sm leading-relaxed mb-8">
-              Devotees chant this mantra to dissolve the ego, purify the soul, and align themselves with deep inner peace and self-realization. Chanting "Namah Shivaya" establishes quietness in the mind, connecting it with cosmic silence.
+              Devotees chant this mantra to dissolve the ego, purify the soul, and align themselves with deep inner peace and self-realization. Chanting &quot;Namah Shivaya&quot; establishes quietness in the mind, connecting it with cosmic silence.
             </p>
  
             {/* Divider */}
@@ -55,6 +161,20 @@ export default function OmNamahShivaya() {
                 </li>
               ))}
             </ul>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-[#FDE68A] mt-8 mb-8" />
+
+            {/* FAQ Section */}
+            <h3 className="text-base sm:text-lg font-bold text-[#4A1C00] mb-5">Frequently Asked Questions</h3>
+            <div className="space-y-4">
+              {faqs.map((item, i) => (
+                <div key={i} className="bg-white/60 rounded-xl p-4 border border-[#FDE68A]">
+                  <h4 className="font-bold text-[#4A1C00] mb-1 text-sm">{item.q}</h4>
+                  <p className="text-[#78350F] text-xs leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

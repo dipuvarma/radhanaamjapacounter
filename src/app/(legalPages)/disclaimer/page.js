@@ -4,6 +4,23 @@ export const metadata = {
   title: "Disclaimer — Radha Naam Japa Counter",
   description:
     "Disclaimer for Radha Naam Japa Counter. Understand the limitations and nature of this devotional tool.",
+  keywords: ["radha naam japa disclaimer", "japa app terms", "devotional app disclaimer", "spiritual app limitations"],
+  alternates: { canonical: "https://radhanaamjapa.com/disclaimer" },
+  openGraph: {
+    title: "Disclaimer — Radha Naam Japa Counter",
+    description: "Read the disclaimer for Radha Naam Japa Counter. Understand the nature and limitations of this devotional tool.",
+    url: "https://radhanaamjapa.com/disclaimer",
+    type: "website",
+    siteName: "Radha Naam Japa Counter",
+    images: [{ url: "/images/radha.jpg", width: 1200, height: 630, alt: "Disclaimer — Radha Naam Japa Counter" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@radhanaamjapa",
+    title: "Disclaimer — Radha Naam Japa Counter",
+    description: "Read the disclaimer for Radha Naam Japa Counter devotional app.",
+    images: ["/images/radha.jpg"],
+  },
 };
 
 const LAST_UPDATED = "July 1, 2026";
@@ -64,6 +81,57 @@ export default function DisclaimerPage() {
 
   return (
     <main className="flex-1 w-full px-4 py-12 md:py-20">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://radhanaamjapa.com/" },
+                  { "@type": "ListItem", position: 2, name: "Disclaimer", item: "https://radhanaamjapa.com/disclaimer" },
+                ],
+              },
+              {
+                "@type": "WebPage",
+                name: "Disclaimer — Radha Naam Japa Counter",
+                url: "https://radhanaamjapa.com/disclaimer",
+                description: "Disclaimer for Radha Naam Japa Counter. Understand the limitations and nature of this devotional tool.",
+                inLanguage: "en",
+                isPartOf: { "@type": "WebSite", url: "https://radhanaamjapa.com" },
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "Is this app affiliated with any temple or religious organization?",
+                    acceptedAnswer: { "@type": "Answer", text: "No. Radha Naam Japa Counter is an independent digital tool. It is not affiliated with any temple, institution, or religious authority." },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Are the spiritual benefits of chanting guaranteed?",
+                    acceptedAnswer: { "@type": "Answer", text: "No. We cannot guarantee specific spiritual outcomes. Chanting benefits are personal experiences that vary by individual and practice." },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Is the audio in the app original?",
+                    acceptedAnswer: { "@type": "Answer", text: "Audio files used in the app are from publicly available sources. If you have concerns about any audio content, contact us." },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Is this app endorsed by any spiritual leader?",
+                    acceptedAnswer: { "@type": "Answer", text: "No. We have not sought or received endorsements from any specific spiritual personalities or institutions." },
+                  },
+                ],
+              },
+            ],
+          }),
+        }}
+      />
       <div className="max-w-3xl mx-auto">
 
         {/* Breadcrumb */}

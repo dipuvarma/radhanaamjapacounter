@@ -1,8 +1,114 @@
 import { HeroSection } from "@/features/chanting-engine";
 
+export const metadata = {
+  title: "Om Ham Hanumate Namah Jap Counter \u2014 Hanuman Mantra Tracker",
+  description:
+    "Count your Om Ham Hanumate Namah japa online. Learn the benefits of Hanuman mantra chanting for strength, courage, and protection. Free digital mala counter.",
+  keywords: [
+    "om ham hanumate namah counter",
+    "hanuman mantra japa",
+    "hanuman jap counter",
+    "bajrang bali mantra",
+    "hanuman mantra benefits",
+    "strength mantra counter",
+    "digital mala hanuman",
+  ],
+  alternates: { canonical: "https://radhanaamjapa.com/mantra/om-ham-hanumate-namah" },
+  openGraph: {
+    title: "Om Ham Hanumate Namah Jap Counter \u2014 Hanuman Mantra Tracker",
+    description:
+      "Count your Hanuman mantra japa and track your sadhana. Free online counter for Om Ham Hanumate Namah.",
+    url: "https://radhanaamjapa.com/mantra/om-ham-hanumate-namah",
+    type: "website",
+    siteName: "Radha Naam Japa Counter",
+    images: [
+      {
+        url: "/images/hanuman.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Om Ham Hanumate Namah \u2014 Hanuman Mantra Japa Counter",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@radhanaamjapa",
+    creator: "@radhanaamjapa",
+    title: "Om Ham Hanumate Namah Jap Counter",
+    description: "Count your Hanuman mantra japa and track your daily sadhana for free.",
+    images: ["/images/hanuman.jpg"],
+  },
+};
+
+const faqs = [
+  {
+    q: "What does 'Om Ham Hanumate Namah' mean?",
+    a: "Om Ham Hanumate Namah means 'I bow to Lord Hanuman'. 'Ham' is the seed syllable (beeja mantra) of Hanuman. This mantra invokes Hanuman's divine energy of strength, courage, and fearlessness.",
+  },
+  {
+    q: "When is the best time to chant the Hanuman mantra?",
+    a: "Tuesday and Saturday are traditionally dedicated to Lord Hanuman. The mantra is most powerful when chanted at sunrise (Brahma Muhurta) or at sunset. Chanting during Hanuman Jayanti is especially auspicious.",
+  },
+  {
+    q: "How many times should I chant Om Ham Hanumate Namah?",
+    a: "Chanting 108 times (one mala) daily is the standard practice. For powerful results, some practitioners chant 1008 times on Tuesdays or Saturdays.",
+  },
+  {
+    q: "Can this mantra protect against negative energies?",
+    a: "Devotees believe Lord Hanuman's mantra acts as a powerful shield against negative forces, evil eye (nazar), and malicious energies. Regular chanting builds a protective spiritual armor around the devotee.",
+  },
+];
+
 export default function OmHamHanumateyNamah() {
   return (
     <main className="flex-1">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://radhanaamjapa.com/" },
+                  { "@type": "ListItem", position: 2, name: "Mantras", item: "https://radhanaamjapa.com/mantra" },
+                  { "@type": "ListItem", position: 3, name: "Om Ham Hanumate Namah", item: "https://radhanaamjapa.com/mantra/om-ham-hanumate-namah" },
+                ],
+              },
+              {
+                "@type": "Article",
+                headline: "Om Ham Hanumate Namah \u2014 Benefits of Hanuman Mantra",
+                description: "Learn the benefits of the Hanuman mantra Om Ham Hanumate Namah and track your japa with our free online counter.",
+                url: "https://radhanaamjapa.com/mantra/om-ham-hanumate-namah",
+                inLanguage: "en",
+                about: { "@type": "Thing", name: "Om Ham Hanumate Namah Hanuman Mantra" },
+                publisher: { "@id": "https://radhanaamjapa.com/#organization" },
+              },
+              {
+                "@type": "HowTo",
+                name: "How to Chant Om Ham Hanumate Namah",
+                step: [
+                  { "@type": "HowToStep", text: "Face East or a Hanuman idol/image. Sit in a clean place." },
+                  { "@type": "HowToStep", text: "Close your eyes and focus on Lord Hanuman's form, feeling his strength." },
+                  { "@type": "HowToStep", text: "Begin chanting 'Om Ham Hanumate Namah' with devotion and clarity." },
+                  { "@type": "HowToStep", text: "Tap the counter for each repetition to track your japa count." },
+                  { "@type": "HowToStep", text: "Complete 108 repetitions for one mala. Press End Session to save your progress." },
+                ],
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: faqs.map((f) => ({
+                  "@type": "Question",
+                  name: f.q,
+                  acceptedAnswer: { "@type": "Answer", text: f.a },
+                })),
+              },
+            ],
+          }),
+        }}
+      />
       <HeroSection
         title="Om Ham Hanumate Namah"
         imageSrc="/images/hanuman.jpg"
@@ -55,6 +161,20 @@ export default function OmHamHanumateyNamah() {
                 </li>
               ))}
             </ul>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-[#FDE68A] mt-8 mb-8" />
+
+            {/* FAQ Section */}
+            <h3 className="text-base sm:text-lg font-bold text-[#4A1C00] mb-5">Frequently Asked Questions</h3>
+            <div className="space-y-4">
+              {faqs.map((item, i) => (
+                <div key={i} className="bg-white/60 rounded-xl p-4 border border-[#FDE68A]">
+                  <h4 className="font-bold text-[#4A1C00] mb-1 text-sm">{item.q}</h4>
+                  <p className="text-[#78350F] text-xs leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

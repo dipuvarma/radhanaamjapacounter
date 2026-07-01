@@ -4,6 +4,23 @@ export const metadata = {
   title: "Privacy Policy — Radha Naam Japa Counter",
   description:
     "Read our Privacy Policy to understand how Radha Naam Japa Counter collects, uses, and protects your personal data.",
+  keywords: ["radha naam japa privacy policy", "japa app data policy", "devotional app privacy", "firebase data storage"],
+  alternates: { canonical: "https://radhanaamjapa.com/privacy-policy" },
+  openGraph: {
+    title: "Privacy Policy — Radha Naam Japa Counter",
+    description: "Read our Privacy Policy to understand how Radha Naam Japa Counter collects, uses, and protects your personal data.",
+    url: "https://radhanaamjapa.com/privacy-policy",
+    type: "website",
+    siteName: "Radha Naam Japa Counter",
+    images: [{ url: "/images/radha.jpg", width: 1200, height: 630, alt: "Privacy Policy — Radha Naam Japa Counter" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@radhanaamjapa",
+    title: "Privacy Policy — Radha Naam Japa Counter",
+    description: "Read our Privacy Policy for Radha Naam Japa Counter devotional app.",
+    images: ["/images/radha.jpg"],
+  },
 };
 
 const LAST_UPDATED = "July 1, 2026";
@@ -83,6 +100,57 @@ export default function PrivacyPolicyPage() {
 
   return (
     <main className="flex-1 w-full px-4 py-12 md:py-20">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://radhanaamjapa.com/" },
+                  { "@type": "ListItem", position: 2, name: "Privacy Policy", item: "https://radhanaamjapa.com/privacy-policy" },
+                ],
+              },
+              {
+                "@type": "WebPage",
+                name: "Privacy Policy — Radha Naam Japa Counter",
+                url: "https://radhanaamjapa.com/privacy-policy",
+                description: "Privacy Policy for Radha Naam Japa Counter. How we collect, use, and protect your data.",
+                inLanguage: "en",
+                isPartOf: { "@type": "WebSite", url: "https://radhanaamjapa.com" },
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "Is my japa count visible to everyone?",
+                    acceptedAnswer: { "@type": "Answer", text: "Only if you sign in. Signed-in users appear on the leaderboard with their name and count. Unsigned users are completely private." },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Does the app track my location?",
+                    acceptedAnswer: { "@type": "Answer", text: "No. We do not collect or use your location data." },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Can I delete my account?",
+                    acceptedAnswer: { "@type": "Answer", text: "Yes. Email us at support@radhanaamjapa.com and we will delete your account and all associated data within 7 days." },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Do you share data with third parties?",
+                    acceptedAnswer: { "@type": "Answer", text: "We never sell your data. We use Firebase (Google) for storage — their privacy policy applies to that data." },
+                  },
+                ],
+              },
+            ],
+          }),
+        }}
+      />
       <div className="max-w-3xl mx-auto">
 
         {/* Breadcrumb */}

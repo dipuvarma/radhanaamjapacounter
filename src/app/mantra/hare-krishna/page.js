@@ -1,8 +1,114 @@
 import { HeroSection } from "@/features/chanting-engine";
 
+export const metadata = {
+  title: "Hare Krishna Maha Mantra Jap Counter \u2014 Chant & Track Online",
+  description:
+    "Count your Hare Krishna Maha Mantra japa online. Learn the benefits of chanting Hare Krishna Hare Krishna Krishna Krishna Hare Hare and track your daily sadhana.",
+  keywords: [
+    "hare krishna mantra counter",
+    "hare krishna japa",
+    "maha mantra jap",
+    "krishna japa counter",
+    "hare krishna benefits",
+    "online mantra counter",
+    "digital mala hare krishna",
+  ],
+  alternates: { canonical: "https://radhanaamjapa.com/mantra/hare-krishna" },
+  openGraph: {
+    title: "Hare Krishna Maha Mantra Jap Counter \u2014 Chant & Track Online",
+    description:
+      "Count your Hare Krishna Maha Mantra japa and track your sadhana. Free online japa counter.",
+    url: "https://radhanaamjapa.com/mantra/hare-krishna",
+    type: "website",
+    siteName: "Radha Naam Japa Counter",
+    images: [
+      {
+        url: "/images/krishna.jfif",
+        width: 1200,
+        height: 630,
+        alt: "Hare Krishna Mantra Japa Counter",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@radhanaamjapa",
+    creator: "@radhanaamjapa",
+    title: "Hare Krishna Maha Mantra Jap Counter",
+    description: "Count your Hare Krishna Maha Mantra japa and track your sadhana for free.",
+    images: ["/images/krishna.jfif"],
+  },
+};
+
+const faqs = [
+  {
+    q: "What is the Hare Krishna Maha Mantra?",
+    a: "The Hare Krishna Maha Mantra is: Hare Krishna Hare Krishna, Krishna Krishna Hare Hare, Hare Rama Hare Rama, Rama Rama Hare Hare. It is considered the most powerful mantra for Kali Yuga.",
+  },
+  {
+    q: "How many times should I chant the Hare Krishna Maha Mantra?",
+    a: "Traditional practice is to chant 108 times (one mala) or 16 rounds (1,728 repetitions) daily. Begin with one mala and gradually increase your practice.",
+  },
+  {
+    q: "What are the benefits of chanting Hare Krishna?",
+    a: "Chanting Hare Krishna cleanses the heart, awakens love for God, reduces anxiety, removes bad effects of Kali Yuga, and leads toward spiritual liberation (moksha).",
+  },
+  {
+    q: "Can beginners chant the Hare Krishna Maha Mantra?",
+    a: "Yes! The Maha Mantra is suitable for everyone regardless of age, caste, or spiritual background. Simply chant with sincerity and focus.",
+  },
+];
+
 export default function HareKrishna() {
   return (
     <main className="flex-1">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://radhanaamjapa.com/" },
+                  { "@type": "ListItem", position: 2, name: "Mantras", item: "https://radhanaamjapa.com/mantra" },
+                  { "@type": "ListItem", position: 3, name: "Hare Krishna", item: "https://radhanaamjapa.com/mantra/hare-krishna" },
+                ],
+              },
+              {
+                "@type": "Article",
+                headline: "Hare Krishna Maha Mantra \u2014 Benefits and How to Chant",
+                description: "Learn the benefits of the Hare Krishna Maha Mantra and how to count your japa with our free digital mala counter.",
+                url: "https://radhanaamjapa.com/mantra/hare-krishna",
+                inLanguage: "en",
+                about: { "@type": "Thing", name: "Hare Krishna Maha Mantra" },
+                publisher: { "@id": "https://radhanaamjapa.com/#organization" },
+              },
+              {
+                "@type": "HowTo",
+                name: "How to Chant the Hare Krishna Maha Mantra",
+                step: [
+                  { "@type": "HowToStep", text: "Sit in a comfortable posture with your back straight." },
+                  { "@type": "HowToStep", text: "Take a mala (108 beads) or use this digital counter." },
+                  { "@type": "HowToStep", text: "Begin chanting: Hare Krishna Hare Krishna, Krishna Krishna Hare Hare..." },
+                  { "@type": "HowToStep", text: "Tap the counter for each mantra repetition to track your japa." },
+                  { "@type": "HowToStep", text: "Complete 108 repetitions (one mala) and press End Session to save your points." },
+                ],
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: faqs.map((f) => ({
+                  "@type": "Question",
+                  name: f.q,
+                  acceptedAnswer: { "@type": "Answer", text: f.a },
+                })),
+              },
+            ],
+          }),
+        }}
+      />
       <HeroSection
         title="Hare Krishna Hare Krishna"
         imageSrc="/images/krishna.jfif"
@@ -59,6 +165,20 @@ export default function HareKrishna() {
                 </li>
               ))}
             </ul>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-[#FDE68A] mt-8 mb-8" />
+
+            {/* FAQ Section */}
+            <h3 className="text-lg font-bold text-[#4A1C00] mb-5">Frequently Asked Questions</h3>
+            <div className="space-y-4">
+              {faqs.map((item, i) => (
+                <div key={i} className="bg-white/60 rounded-xl p-4 border border-[#FDE68A]">
+                  <h4 className="font-bold text-[#4A1C00] mb-1 text-sm">{item.q}</h4>
+                  <p className="text-[#78350F] text-xs leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

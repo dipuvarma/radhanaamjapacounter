@@ -7,19 +7,44 @@ export const metadata = {
   title: "Radha Naam Japa Counter — Free Online Japa Mala Tracker",
   description:
     "Track your daily Radhe Radhe japa with our free online counter. Build chanting streaks, earn points, and join thousands of devotees on the community leaderboard.",
-  keywords:
-    "japa counter, radhe radhe, japa mala, chanting tracker, bhakti, radha krishna, mantra counter, japa sadhana",
+  keywords: [
+    "japa counter",
+    "radhe radhe",
+    "japa mala",
+    "chanting tracker",
+    "bhakti",
+    "radha krishna",
+    "mantra counter",
+    "japa sadhana",
+    "online mala counter",
+    "free japa tracker",
+    "digital mala",
+    "devotional app",
+  ],
+  alternates: { canonical: "https://radhanaamjapa.com/" },
   openGraph: {
     title: "Radha Naam Japa Counter — Free Online Japa Mala Tracker",
     description:
       "Count your Radhe Radhe japa, track your streak, and join thousands of bhakts on the community leaderboard.",
+    url: "https://radhanaamjapa.com/",
     type: "website",
     siteName: "Radha Naam Japa Counter",
+    images: [
+      {
+        url: "/images/radha.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Radha Naam Japa Counter — Free Online Japa Mala Tracker",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@radhanaamjapa",
+    creator: "@radhanaamjapa",
     title: "Radha Naam Japa Counter",
     description: "Free online japa counter for devotees. Track Radhe Radhe, Hare Krishna, Om Namah Shivaya & more.",
+    images: ["/images/radha.jpg"],
   },
 };
 
@@ -71,6 +96,31 @@ export default function Home() {
                 name: "Radha Naam Japa Counter",
                 description: "Free online japa counter for devotees. Track Radhe Radhe, Hare Krishna, Om Namah Shivaya & more.",
                 inLanguage: "en",
+                publisher: { "@id": "https://radhanaamjapa.com/#organization" },
+              },
+              {
+                "@type": "WebPage",
+                "@id": "https://radhanaamjapa.com/#webpage",
+                url: "https://radhanaamjapa.com/",
+                name: "Radha Naam Japa Counter — Free Online Japa Mala Tracker",
+                isPartOf: { "@id": "https://radhanaamjapa.com/#website" },
+                about: { "@id": "https://radhanaamjapa.com/#organization" },
+                description:
+                  "Track your daily Radhe Radhe japa with our free online counter. Build chanting streaks, earn points, and join thousands of devotees on the community leaderboard.",
+                inLanguage: "en",
+                breadcrumb: { "@id": "https://radhanaamjapa.com/#breadcrumb" },
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://radhanaamjapa.com/#breadcrumb",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://radhanaamjapa.com/",
+                  },
+                ],
               },
               {
                 "@type": "HowTo",

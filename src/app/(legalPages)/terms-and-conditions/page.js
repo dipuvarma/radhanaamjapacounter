@@ -4,6 +4,23 @@ export const metadata = {
   title: "Terms and Conditions — Radha Naam Japa Counter",
   description:
     "Read the Terms and Conditions for using Radha Naam Japa Counter. By using our platform, you agree to these terms.",
+  keywords: ["radha naam japa terms", "japa app terms of service", "devotional app usage terms", "japa counter rules"],
+  alternates: { canonical: "https://radhanaamjapa.com/terms-and-conditions" },
+  openGraph: {
+    title: "Terms and Conditions — Radha Naam Japa Counter",
+    description: "Read the Terms and Conditions for using Radha Naam Japa Counter. By using our platform, you agree to these terms.",
+    url: "https://radhanaamjapa.com/terms-and-conditions",
+    type: "website",
+    siteName: "Radha Naam Japa Counter",
+    images: [{ url: "/images/radha.jpg", width: 1200, height: 630, alt: "Terms and Conditions — Radha Naam Japa Counter" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@radhanaamjapa",
+    title: "Terms and Conditions — Radha Naam Japa Counter",
+    description: "Read the Terms and Conditions for using the Radha Naam Japa Counter devotional app.",
+    images: ["/images/radha.jpg"],
+  },
 };
 
 const LAST_UPDATED = "July 1, 2026";
@@ -74,6 +91,57 @@ export default function TermsAndConditionsPage() {
 
   return (
     <main className="flex-1 w-full px-4 py-12 md:py-20">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://radhanaamjapa.com/" },
+                  { "@type": "ListItem", position: 2, name: "Terms & Conditions", item: "https://radhanaamjapa.com/terms-and-conditions" },
+                ],
+              },
+              {
+                "@type": "WebPage",
+                name: "Terms and Conditions — Radha Naam Japa Counter",
+                url: "https://radhanaamjapa.com/terms-and-conditions",
+                description: "Terms and Conditions for using Radha Naam Japa Counter.",
+                inLanguage: "en",
+                isPartOf: { "@type": "WebSite", url: "https://radhanaamjapa.com" },
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "Can I use this app for free?",
+                    acceptedAnswer: { "@type": "Answer", text: "Yes, the app is completely free. There are no subscriptions or hidden charges." },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Is it against the terms to use the app on multiple devices?",
+                    acceptedAnswer: { "@type": "Answer", text: "No, you can use the app on multiple devices. However, your leaderboard count is linked to your Google account." },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "What happens if I violate the terms?",
+                    acceptedAnswer: { "@type": "Answer", text: "Users who violate terms — especially cheating on the leaderboard — will be removed and their data may be deleted." },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "How are disputes handled?",
+                    acceptedAnswer: { "@type": "Answer", text: "Any disputes will be handled as per Indian law. We encourage resolution through direct communication first." },
+                  },
+                ],
+              },
+            ],
+          }),
+        }}
+      />
       <div className="max-w-3xl mx-auto">
 
         {/* Breadcrumb */}

@@ -2,6 +2,48 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Choose Your Mantra — Japa Counter for Radhe Radhe, Hare Krishna & More",
+  description:
+    "Select from sacred Hindu mantras — Radhe Radhe, Hare Krishna, Om Namah Shivaya, Jai Shri Ram, Om Gam Ganapataye Namah, Om Ham Hanumate Namah. Start your japa sadhana online.",
+  keywords: [
+    "mantra japa counter",
+    "radhe radhe counter",
+    "hare krishna counter",
+    "om namah shivaya counter",
+    "jai shri ram counter",
+    "ganesh mantra counter",
+    "hanuman mantra counter",
+    "digital mala counter",
+    "online japa tracker",
+  ],
+  alternates: { canonical: "https://radhanaamjapa.com/mantra" },
+  openGraph: {
+    title: "Choose Your Mantra — Japa Counter for Radhe Radhe, Hare Krishna & More",
+    description:
+      "Select from sacred Hindu mantras and start your digital japa practice with our free online counter.",
+    url: "https://radhanaamjapa.com/mantra",
+    type: "website",
+    siteName: "Radha Naam Japa Counter",
+    images: [
+      {
+        url: "/images/krishna.jfif",
+        width: 1200,
+        height: 630,
+        alt: "Choose Your Mantra for Japa Practice",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@radhanaamjapa",
+    creator: "@radhanaamjapa",
+    title: "Choose Your Mantra — Japa Counter",
+    description: "Select from sacred Hindu mantras and start your digital japa practice for free.",
+    images: ["/images/krishna.jfif"],
+  },
+};
+
 const mantras = [
   {
     id: 1,
@@ -66,6 +108,36 @@ const mantras = [
 const MantraPage = () => {
   return (
     <main className="flex-1 w-full px-4 py-10 md:py-16">
+      {/* JSON-LD: BreadcrumbList + ItemList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://radhanaamjapa.com/" },
+                  { "@type": "ListItem", position: 2, name: "Mantras", item: "https://radhanaamjapa.com/mantra" },
+                ],
+              },
+              {
+                "@type": "ItemList",
+                name: "Sacred Mantras for Japa Practice",
+                description: "A curated list of Hindu mantras available for digital japa counting.",
+                numberOfItems: mantras.length,
+                itemListElement: mantras.map((m, i) => ({
+                  "@type": "ListItem",
+                  position: i + 1,
+                  name: m.name,
+                  url: `https://radhanaamjapa.com${m.href}`,
+                })),
+              },
+            ],
+          }),
+        }}
+      />
       {/* Header */}
       <div className="text-center mb-12">
         <h1

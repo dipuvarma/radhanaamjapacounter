@@ -4,11 +4,81 @@ export const metadata = {
   title: "Contact Us — Radha Naam Japa Counter",
   description:
     "Get in touch with the Radha Naam Japa Counter team. We'd love to hear from you — feedback, suggestions, or devotional queries.",
+  keywords: ["contact radha naam japa", "japa app support", "devotional app contact", "japa counter help"],
+  alternates: { canonical: "https://radhanaamjapa.com/contact-us" },
+  openGraph: {
+    title: "Contact Us — Radha Naam Japa Counter",
+    description: "Reach out to the Radha Naam Japa Counter team with feedback, suggestions, or devotional queries.",
+    url: "https://radhanaamjapa.com/contact-us",
+    type: "website",
+    siteName: "Radha Naam Japa Counter",
+    images: [{ url: "/images/radha.jpg", width: 1200, height: 630, alt: "Contact Radha Naam Japa Counter" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@radhanaamjapa",
+    title: "Contact Us — Radha Naam Japa Counter",
+    description: "Reach out to the Radha Naam Japa Counter team with your feedback or queries.",
+    images: ["/images/radha.jpg"],
+  },
 };
 
 export default function ContactUsPage() {
+  const pageFAQs = [
+    {
+      q: "How quickly will I get a reply?",
+      a: "We typically respond within 24 hours on weekdays. During spiritual observances (Ekadashi, festivals), it may take slightly longer.",
+    },
+    {
+      q: "Can I suggest a new mantra to be added?",
+      a: "Absolutely! We welcome suggestions for new mantras and features. Send us an email and we'll consider it for the next update.",
+    },
+    {
+      q: "How can I report a bug or issue?",
+      a: "Please use the contact form above with the subject 'Bug Report'. Include your browser name and what you were doing when the issue occurred.",
+    },
+    {
+      q: "Do you offer collaborations or partnerships?",
+      a: "For spiritual organizations, temples, or bhakti communities who want to collaborate, please reach out to us via email.",
+    },
+  ];
+
   return (
     <main className="flex-1 w-full px-4 py-12 md:py-20">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://radhanaamjapa.com/" },
+                  { "@type": "ListItem", position: 2, name: "Contact Us", item: "https://radhanaamjapa.com/contact-us" },
+                ],
+              },
+              {
+                "@type": "WebPage",
+                name: "Contact Us — Radha Naam Japa Counter",
+                url: "https://radhanaamjapa.com/contact-us",
+                description: "Contact the Radha Naam Japa Counter team with feedback, suggestions, or queries.",
+                inLanguage: "en",
+                isPartOf: { "@type": "WebSite", url: "https://radhanaamjapa.com" },
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: pageFAQs.map((f) => ({
+                  "@type": "Question",
+                  name: f.q,
+                  acceptedAnswer: { "@type": "Answer", text: f.a },
+                })),
+              },
+            ],
+          }),
+        }}
+      />
       <div className="max-w-3xl mx-auto">
         {/* Breadcrumb */}
         <nav
@@ -146,24 +216,7 @@ export default function ContactUsPage() {
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
-            {[
-              {
-                q: "How quickly will I get a reply?",
-                a: "We typically respond within 24 hours on weekdays. During spiritual observances (Ekadashi, festivals), it may take slightly longer.",
-              },
-              {
-                q: "Can I suggest a new mantra to be added?",
-                a: "Absolutely! We welcome suggestions for new mantras and features. Send us an email and we'll consider it for the next update.",
-              },
-              {
-                q: "How can I report a bug or issue?",
-                a: "Please use the contact form above with the subject 'Bug Report'. Include your browser name and what you were doing when the issue occurred.",
-              },
-              {
-                q: "Do you offer collaborations or partnerships?",
-                a: "For spiritual organizations, temples, or bhakti communities who want to collaborate, please reach out to us via email.",
-              },
-            ].map((item, i) => (
+            {pageFAQs.map((item, i) => (
               <div
                 key={i}
                 className="bg-[#FFFDF9] border border-[#FDE68A] rounded-xl p-5"

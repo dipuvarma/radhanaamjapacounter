@@ -4,11 +4,83 @@ export const metadata = {
   title: "About Us — Radha Naam Japa Counter",
   description:
     "Learn about Radha Naam Japa Counter — a sacred digital space for devotees to track their daily japa sadhana and deepen their Radha Krishna bhakti.",
+  keywords: ["about radha naam japa", "japa app about", "bhakti app creators", "devotional counter app"],
+  alternates: { canonical: "https://radhanaamjapa.com/about-us" },
+  openGraph: {
+    title: "About Us — Radha Naam Japa Counter",
+    description:
+      "Learn about Radha Naam Japa Counter — a sacred digital space for tracking japa sadhana and deepening Radha Krishna bhakti.",
+    url: "https://radhanaamjapa.com/about-us",
+    type: "website",
+    siteName: "Radha Naam Japa Counter",
+    images: [{ url: "/images/radha.jpg", width: 1200, height: 630, alt: "About Radha Naam Japa Counter" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@radhanaamjapa",
+    title: "About Us — Radha Naam Japa Counter",
+    description: "Learn about the free devotional japa tracking app built for bhakts.",
+    images: ["/images/radha.jpg"],
+  },
 };
 
 export default function AboutUsPage() {
+  const pageFAQs = [
+    {
+      q: "Is Radha Naam Japa Counter free to use?",
+      a: "Yes, completely free. No subscription, no hidden charges.",
+    },
+    {
+      q: "Who created this app?",
+      a: "This app was created by a devotee of Radha Rani as a seva (service) to the bhakti community.",
+    },
+    {
+      q: "Is my chanting data private?",
+      a: "Your japa data is stored locally on your device. If you sign in, your lifetime japa count is shared on the leaderboard (only your name and count are visible).",
+    },
+    {
+      q: "Can I use this app offline?",
+      a: "Yes! The japa counter works without internet. Leaderboard requires an internet connection.",
+    },
+  ];
+
   return (
     <main className="flex-1 w-full px-4 py-12 md:py-20">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://radhanaamjapa.com/" },
+                  { "@type": "ListItem", position: 2, name: "About Us", item: "https://radhanaamjapa.com/about-us" },
+                ],
+              },
+              {
+                "@type": "WebPage",
+                name: "About Radha Naam Japa Counter",
+                url: "https://radhanaamjapa.com/about-us",
+                description: "Learn about Radha Naam Japa Counter — a free devotional platform for tracking japa sadhana.",
+                inLanguage: "en",
+                isPartOf: { "@type": "WebSite", url: "https://radhanaamjapa.com" },
+                about: { "@id": "https://radhanaamjapa.com/#organization" },
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: pageFAQs.map((f) => ({
+                  "@type": "Question",
+                  name: f.q,
+                  acceptedAnswer: { "@type": "Answer", text: f.a },
+                })),
+              },
+            ],
+          }),
+        }}
+      />
       <div className="max-w-3xl mx-auto">
 
         {/* Breadcrumb */}
@@ -98,24 +170,7 @@ export default function AboutUsPage() {
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
-            {[
-              {
-                q: "Is Radha Naam Japa Counter free to use?",
-                a: "Yes, completely free. No subscription, no hidden charges.",
-              },
-              {
-                q: "Who created this app?",
-                a: "This app was created by a devotee of Radha Rani as a seva (service) to the bhakti community.",
-              },
-              {
-                q: "Is my chanting data private?",
-                a: "Your japa data is stored locally on your device. If you sign in, your lifetime japa count is shared on the leaderboard (only your name and count are visible).",
-              },
-              {
-                q: "Can I use this app offline?",
-                a: "Yes! The japa counter works without internet. Leaderboard requires an internet connection.",
-              },
-            ].map((item, i) => (
+            {pageFAQs.map((item, i) => (
               <div key={i} className="bg-[#FFFDF9] border border-[#FDE68A] rounded-xl p-5">
                 <h3 className="font-bold text-[#4A1C00] mb-2">{item.q}</h3>
                 <p className="text-[#78350F] text-sm leading-relaxed">{item.a}</p>
