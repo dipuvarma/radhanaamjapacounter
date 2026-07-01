@@ -13,10 +13,12 @@ export function useSessionScoring(streakDays = 0) {
   const sessionStart = useRef(Date.now());
   const [tapIntervals, setTapIntervals] = useState([]);
   const lastTapTime = useRef(null);
+  const totalSessionJapa = useRef(0); // ✅ Ye kabhi reset nahi hoga
 
   // Call this on every japa tap
   const recordTap = () => {
     const now = Date.now();
+    totalSessionJapa.current += 1; // ✅ Har tap pe +1
     if (lastTapTime.current !== null) {
       const interval = (now - lastTapTime.current) / 1000;
       setTapIntervals((prev) => [...prev, interval]);
@@ -25,9 +27,9 @@ export function useSessionScoring(streakDays = 0) {
   };
 
   // Call this when session ends (user clicks "End Session" button)
-  const endSession = (japaCount) => {
+  const endSession = () => {
+    const japaCount = totalSessionJapa.current;
     const sessionDurationSeconds = (Date.now() - sessionStart.current) / 1000;
-
     const pointsEarned = calculatePoints({
       japaCount,
       sessionDurationSeconds,

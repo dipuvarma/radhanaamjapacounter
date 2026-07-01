@@ -57,7 +57,7 @@ const HeroSection = ({
       toast("Pehle japa karo! 🙏", { icon: "📿" });
       return;
     }
-    const pts = endSession(japaCount);
+    const pts = endSession();
     toast.success(`Session khatam! Aapne ${pts} points kamaaye! 🎉`, {
       duration: 4000,
       icon: "🏆",
