@@ -1,7 +1,9 @@
 import { HeroSection } from "@/features/chanting-engine";
+import FAQSection from "@/components/FAQSection";
+import AnimatedSection from "@/components/shared/AnimatedSection";
 
 export const metadata = {
-  title: "Om Gam Ganapataye Namah Jap Counter \u2014 Ganesha Mantra Tracker",
+  title: "Om Gam Ganapataye Namah Jap Counter — Ganesha Mantra Tracker",
   description:
     "Count your Om Gam Ganapataye Namah japa online. Learn the benefits of Ganesha mantra chanting and track your daily sadhana with our free digital mala counter.",
   keywords: [
@@ -15,7 +17,7 @@ export const metadata = {
   ],
   alternates: { canonical: "https://radhanaamjapa.com/mantra/om-gam-ganapataye-namah" },
   openGraph: {
-    title: "Om Gam Ganapataye Namah Jap Counter \u2014 Ganesha Mantra Tracker",
+    title: "Om Gam Ganapataye Namah Jap Counter — Ganesha Mantra Tracker",
     description:
       "Count your Om Gam Ganapataye Namah japa and remove obstacles from your path. Free online Ganesha mantra counter.",
     url: "https://radhanaamjapa.com/mantra/om-gam-ganapataye-namah",
@@ -26,7 +28,7 @@ export const metadata = {
         url: "/images/ganesh.jpg",
         width: 1200,
         height: 630,
-        alt: "Om Gam Ganapataye Namah \u2014 Ganesha Mantra Japa Counter",
+        alt: "Om Gam Ganapataye Namah — Ganesha Mantra Japa Counter",
       },
     ],
   },
@@ -79,7 +81,7 @@ export default function OmGamGanapatayeNamah() {
               },
               {
                 "@type": "Article",
-                headline: "Om Gam Ganapataye Namah \u2014 Benefits of Ganesha Mantra",
+                headline: "Om Gam Ganapataye Namah — Benefits of Ganesha Mantra",
                 description: "Learn the benefits of the Ganesha mantra Om Gam Ganapataye Namah and count your japa with our free online counter.",
                 url: "https://radhanaamjapa.com/mantra/om-gam-ganapataye-namah",
                 inLanguage: "en",
@@ -113,71 +115,65 @@ export default function OmGamGanapatayeNamah() {
         title="Om Gam Ganapataye Namah"
         imageSrc="/images/ganesh.jpg"
         altDescription="Lord Ganesha"
+        audioSrc="/audio/om-gam-ganapataye-namah.mp3"
       />
       {/* ===== MANTRA BENEFITS SECTION ===== */}
       <section className="w-full bg-[#FAE3A0] py-16 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-gradient-to-b from-[#FFF8E7] to-[#FFF0D6] rounded-3xl border border-[#FDE68A] p-6 sm:p-12">
-            {/* Title */}
-            <h2 className="text-xl sm:text-3xl font-bold text-[#4A1C00] text-center mb-3">
-              Om Gam Ganapataye Namah Jap Benefits
-            </h2>
-            <p className="text-[#78350F] text-xs sm:text-sm text-center leading-relaxed mb-8">
-              Chanting the Ganesha Mantra (ॐ गं गणपतये नमः) invokes the energy of Lord Ganesha, the remover of obstacles and lord of auspicious beginnings, intellect, and wisdom.
-            </p>
- 
-            {/* Divider */}
-            <div className="w-full h-px bg-[#FDE68A] mb-8" />
- 
-            {/* Why do we chant it */}
-            <h3 className="text-base sm:text-lg font-bold text-[#4A1C00] mb-3">
-              Why do we chant it?
-            </h3>
-            <p className="text-[#78350F] text-xs sm:text-sm leading-relaxed mb-8">
-              Devotees chant this mantra before starting any new venture, project, or journey to seek divine protection and remove potential hindrances. Lord Ganesha represents intellectual sharpness, grounding energy, and the removal of doubts.
-            </p>
- 
-            {/* Divider */}
-            <div className="w-full h-px bg-[#FDE68A] mb-8" />
- 
-            {/* Benefits */}
-            <h3 className="text-base sm:text-lg font-bold text-[#4A1C00] mb-5">Benefits</h3>
-            <ul className="space-y-3">
-              {[
-                "Dissolves internal and external obstacles on your life path",
-                "Grants sharp intellect, mental clarity, and deep wisdom",
-                "Invokes success, abundance, and auspiciousness in new endeavors",
-                "Calms the nervous system, bringing mental peace and stability",
-                "Clears negative energy from your home and chanting space",
-                "Helps align and balance the Root Chakra (Muladhara) for grounding",
-                "Builds confidence, removing anxiety and hesitation",
-                "Deepens focus, willpower, and general spiritual alignment",
-              ].map((benefit, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-[#F37420] font-bold mt-0.5">·</span>
-                  <span className="text-[#78350F] text-xs sm:text-sm leading-relaxed">
-                    {benefit}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Divider */}
-            <div className="w-full h-px bg-[#FDE68A] mt-8 mb-8" />
-
-            {/* FAQ Section */}
-            <h3 className="text-base sm:text-lg font-bold text-[#4A1C00] mb-5">Frequently Asked Questions</h3>
-            <div className="space-y-4">
-              {faqs.map((item, i) => (
-                <div key={i} className="bg-white/60 rounded-xl p-4 border border-[#FDE68A]">
-                  <h4 className="font-bold text-[#4A1C00] mb-1 text-sm">{item.q}</h4>
-                  <p className="text-[#78350F] text-xs leading-relaxed">{item.a}</p>
-                </div>
-              ))}
+          <AnimatedSection>
+            <div className="bg-gradient-to-b from-[#FFF8E7] to-[#FFF0D6] rounded-3xl border border-[#FDE68A] p-6 sm:p-12 shadow-sm">
+              {/* Title */}
+              <h2 className="text-xl sm:text-3xl font-bold text-[#4A1C00] text-center mb-3">
+                Om Gam Ganapataye Namah Jap Benefits
+              </h2>
+              <p className="text-[#78350F] text-xs sm:text-sm text-center leading-relaxed mb-8">
+                Chanting the Ganesha Mantra (ॐ गं गणपतये नमः) invokes the energy of Lord Ganesha, the remover of obstacles and lord of auspicious beginnings, intellect, and wisdom.
+              </p>
+   
+              {/* Divider */}
+              <div className="w-full h-px bg-[#FDE68A] mb-8" />
+   
+              {/* Why do we chant it */}
+              <h3 className="text-base sm:text-lg font-bold text-[#4A1C00] mb-3">
+                Why do we chant it?
+              </h3>
+              <p className="text-[#78350F] text-xs sm:text-sm leading-relaxed mb-8">
+                Devotees chant this mantra before starting any new venture, project, or journey to seek divine protection and remove potential hindrances. Lord Ganesha represents intellectual sharpness, grounding energy, and the removal of doubts.
+              </p>
+   
+              {/* Divider */}
+              <div className="w-full h-px bg-[#FDE68A] mb-8" />
+   
+              {/* Benefits */}
+              <h3 className="text-base sm:text-lg font-bold text-[#4A1C00] mb-5">Benefits</h3>
+              <ul className="space-y-3">
+                {[
+                  "Dissolves internal and external obstacles on your life path",
+                  "Grants sharp intellect, mental clarity, and deep wisdom",
+                  "Invokes success, abundance, and auspiciousness in new endeavors",
+                  "Calms the nervous system, bringing mental peace and stability",
+                  "Clears negative energy from your home and chanting space",
+                  "Helps align and balance the Root Chakra (Muladhara) for grounding",
+                  "Builds confidence, removing anxiety and hesitation",
+                  "Deepens focus, willpower, and general spiritual alignment",
+                ].map((benefit, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="text-[#F37420] font-bold mt-0.5">·</span>
+                    <span className="text-[#78350F] text-xs sm:text-sm leading-relaxed">
+                      {benefit}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <div className="bg-[#FAE3A0] pb-12">
+        <FAQSection faqs={faqs} headingId="ganesha-faq" />
+      </div>
     </main>
   );
 }

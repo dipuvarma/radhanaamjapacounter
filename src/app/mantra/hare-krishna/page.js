@@ -1,7 +1,9 @@
 import { HeroSection } from "@/features/chanting-engine";
+import FAQSection from "@/components/FAQSection";
+import AnimatedSection from "@/components/shared/AnimatedSection";
 
 export const metadata = {
-  title: "Hare Krishna Maha Mantra Jap Counter \u2014 Chant & Track Online",
+  title: "Hare Krishna Maha Mantra Jap Counter — Chant & Track Online",
   description:
     "Count your Hare Krishna Maha Mantra japa online. Learn the benefits of chanting Hare Krishna Hare Krishna Krishna Krishna Hare Hare and track your daily sadhana.",
   keywords: [
@@ -15,7 +17,7 @@ export const metadata = {
   ],
   alternates: { canonical: "https://radhanaamjapa.com/mantra/hare-krishna" },
   openGraph: {
-    title: "Hare Krishna Maha Mantra Jap Counter \u2014 Chant & Track Online",
+    title: "Hare Krishna Maha Mantra Jap Counter — Chant & Track Online",
     description:
       "Count your Hare Krishna Maha Mantra japa and track your sadhana. Free online japa counter.",
     url: "https://radhanaamjapa.com/mantra/hare-krishna",
@@ -79,7 +81,7 @@ export default function HareKrishna() {
               },
               {
                 "@type": "Article",
-                headline: "Hare Krishna Maha Mantra \u2014 Benefits and How to Chant",
+                headline: "Hare Krishna Maha Mantra — Benefits and How to Chant",
                 description: "Learn the benefits of the Hare Krishna Maha Mantra and how to count your japa with our free digital mala counter.",
                 url: "https://radhanaamjapa.com/mantra/hare-krishna",
                 inLanguage: "en",
@@ -113,75 +115,69 @@ export default function HareKrishna() {
         title="Hare Krishna Hare Krishna"
         imageSrc="/images/krishna.jfif"
         altDescription="Lord Krishna"
+        audioSrc="/audio/hare-krishna.mp3"
       />
       {/* ===== MANTRA BENEFITS SECTION ===== */}
       <section className="w-full bg-[#FAE3A0] py-16 px-6">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-gradient-to-b from-[#FFF8E7] to-[#FFF0D6] rounded-3xl border border-[#FDE68A] p-8 sm:p-12">
-            {/* Title */}
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#4A1C00] text-center mb-3">
-              Hare Krishna Maha Mantra Jap Benefits
-            </h2>
-            <p className="text-[#78350F] text-sm text-center leading-relaxed mb-8">
-              The Hare Krishna Maha Mantra (हरे कृष्ण...) is the great chanting
-              prayer for deliverance. It is praised in scriptures as the most
-              effective mantra for Kali Yuga.
-            </p>
+          <AnimatedSection>
+            <div className="bg-gradient-to-b from-[#FFF8E7] to-[#FFF0D6] rounded-3xl border border-[#FDE68A] p-8 sm:p-12 shadow-sm">
+              {/* Title */}
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#4A1C00] text-center mb-3">
+                Hare Krishna Maha Mantra Jap Benefits
+              </h2>
+              <p className="text-[#78350F] text-sm text-center leading-relaxed mb-8">
+                The Hare Krishna Maha Mantra (हरे कृष्ण...) is the great chanting
+                prayer for deliverance. It is praised in scriptures as the most
+                effective mantra for Kali Yuga.
+              </p>
 
-            {/* Divider */}
-            <div className="w-full h-px bg-[#FDE68A] mb-8" />
+              {/* Divider */}
+              <div className="w-full h-px bg-[#FDE68A] mb-8" />
 
-            {/* Why do we chant it */}
-            <h3 className="text-lg font-bold text-[#4A1C00] mb-3">
-              Why do we chant it?
-            </h3>
-            <p className="text-[#78350F] text-sm leading-relaxed mb-8">
-              Devotees chant this mantra to cleanse consciousness, awaken love
-              for Krishna, and seek liberation. It is recommended for daily japa
-              because it directly connects the soul with the Supreme Lord.
-            </p>
+              {/* Why do we chant it */}
+              <h3 className="text-lg font-bold text-[#4A1C00] mb-3">
+                Why do we chant it?
+              </h3>
+              <p className="text-[#78350F] text-sm leading-relaxed mb-8">
+                Devotees chant this mantra to cleanse consciousness, awaken love
+                for Krishna, and seek liberation. It is recommended for daily japa
+                because it directly connects the soul with the Supreme Lord.
+              </p>
 
-            {/* Divider */}
-            <div className="w-full h-px bg-[#FDE68A] mb-8" />
+              {/* Divider */}
+              <div className="w-full h-px bg-[#FDE68A] mb-8" />
 
-            {/* Benefits */}
-            <h3 className="text-lg font-bold text-[#4A1C00] mb-5">Benefits</h3>
-            <ul className="space-y-3">
-              {[
-                "Cleanses the heart and consciousness (ceto-darpana-marjanam)",
-                "Awakens love and devotion for Lord Krishna",
-                "Reduces anxiety, stress, and restlessness",
-                "Removes the bad effects of Kali Yuga",
-                "Brings spiritual happiness and inner bliss",
-                "Helps one remember Krishna throughout the day",
-                "Purifies past karma through nama-sankirtan",
-                "Leads toward liberation (moksha) through bhakti",
-              ].map((benefit, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-[#F37420] font-bold mt-0.5">·</span>
-                  <span className="text-[#78350F] text-sm leading-relaxed">
-                    {benefit}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Divider */}
-            <div className="w-full h-px bg-[#FDE68A] mt-8 mb-8" />
-
-            {/* FAQ Section */}
-            <h3 className="text-lg font-bold text-[#4A1C00] mb-5">Frequently Asked Questions</h3>
-            <div className="space-y-4">
-              {faqs.map((item, i) => (
-                <div key={i} className="bg-white/60 rounded-xl p-4 border border-[#FDE68A]">
-                  <h4 className="font-bold text-[#4A1C00] mb-1 text-sm">{item.q}</h4>
-                  <p className="text-[#78350F] text-xs leading-relaxed">{item.a}</p>
-                </div>
-              ))}
+              {/* Benefits */}
+              <h3 className="text-lg font-bold text-[#4A1C00] mb-5">Benefits</h3>
+              <ul className="space-y-3">
+                {[
+                  "Cleanses the heart and consciousness (ceto-darpana-marjanam)",
+                  "Awakens love and devotion for Lord Krishna",
+                  "Reduces anxiety, stress, and restlessness",
+                  "Removes the bad effects of Kali Yuga",
+                  "Brings spiritual happiness and inner bliss",
+                  "Helps one remember Krishna throughout the day",
+                  "Purifies past karma through nama-sankirtan",
+                  "Leads toward liberation (moksha) through bhakti",
+                ].map((benefit, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="text-[#F37420] font-bold mt-0.5">·</span>
+                    <span className="text-[#78350F] text-sm leading-relaxed">
+                      {benefit}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <div className="bg-[#FFF8E7] pb-12">
+        <FAQSection faqs={faqs} headingId="hare-krishna-faq" />
+      </div>
     </main>
   );
 }
