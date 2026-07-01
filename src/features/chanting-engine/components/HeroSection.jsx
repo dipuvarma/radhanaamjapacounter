@@ -8,14 +8,24 @@ import useSound from "use-sound";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import confetti from "canvas-confetti";
+import { useSessionScoring } from "@/hooks/useSessionScoring";
+import toast from "react-hot-toast";
 
-const HeroSection = ({ imageSrc, altDescription, title }) => {
+const HeroSection = ({
+  imageSrc,
+  altDescription,
+  title,
+  audioSrc = "/audio/radha-radha.mp3",
+}) => {
   const router = useRouter();
   const pathname = usePathname();
-  const { handleIncreaseJapaCount, japaCount } = useJapaState();
+  const { handleIncreaseJapaCount, japaCount, analytics } = useJapaState();
   const [isSoundOn, setIsSoundOn] = useState(false);
 
-  const [play] = useSound("/audio/radha-radha.mp3", {
+  const streakDays = analytics?.summary?.currentStreak || 0;
+  const { recordTap, endSession } = useSessionScoring(streakDays);
+
+  const [play] = useSound(audioSrc, {
     volume: 0.5,
     interrupt: true,
   });
@@ -25,11 +35,12 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
     setIsSoundOn((prev) => !prev);
   };
 
-  const handleJapaCount = (e) => {
+  const handleJapaCount = () => {
     handleIncreaseJapaCount();
     if (isSoundOn) {
       play();
     }
+    recordTap();
     if (japaCount > 0 && japaCount % 108 == 0) {
       confetti({
         particleCount: 300,
@@ -40,10 +51,23 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
     }
   };
 
+  const handleEndSession = (e) => {
+    e.stopPropagation();
+    if (japaCount === 0) {
+      toast("Pehle japa karo! 🙏", { icon: "📿" });
+      return;
+    }
+    const pts = endSession(japaCount);
+    toast.success(`Session khatam! Aapne ${pts} points kamaaye! 🎉`, {
+      duration: 4000,
+      icon: "🏆",
+    });
+  };
+
   return (
     <section
       onClick={handleJapaCount}
-      className="w-full min-h-screen relative select-none"
+      className="w-full min-h-[calc(100vh-3rem)] relative select-none"
     >
       <section className="mx-auto px-4 py-4">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 sm:gap-3 md:gap-4 items-center">
@@ -79,8 +103,9 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
             </h1>
           </div>
 
-          {/* Select Mantra Dropdown  */}
-          <div className="col-span-1 flex justify-end order-3 md:order-3">
+          {/* Right side: Mantra Select + End Session */}
+          <div className="col-span-1 flex flex-col items-end gap-2 order-3 md:order-3">
+            {/* Select Mantra Dropdown  */}
             <div className="relative font-poppins w-full max-w-[140px] sm:max-w-[185px]">
               <select
                 value={pathname}
@@ -145,6 +170,15 @@ const HeroSection = ({ imageSrc, altDescription, title }) => {
                 </svg>
               </div>
             </div>
+
+            {/* End Session Button */}
+            <button
+              onClick={handleEndSession}
+              aria-label="End japa session and save points"
+              className="text-xs font-semibold px-3 py-1.5 rounded-full bg-amber-900 text-amber-50 hover:bg-amber-800 active:scale-95 transition-all duration-200 cursor-pointer shadow-sm"
+            >
+              End Session 🏆
+            </button>
           </div>
         </div>
 

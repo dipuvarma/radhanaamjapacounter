@@ -5,6 +5,8 @@ import { FaCrown, FaLock } from "react-icons/fa";
 import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
 import { useLeaderboard } from "@/hooks/useLeaderboard";
+import FAQSection from "@/components/FAQSection";
+
 
 export default function LeaderboardPage() {
   const { user, signInWithGoogle } = useAuth();
@@ -274,6 +276,22 @@ export default function LeaderboardPage() {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* FAQ Section — only shown when user is signed in */}
+      {user && (
+        <div className="bg-[#fffdf8]">
+          <FAQSection
+            headingId="leaderboard-faq"
+            faqs={[
+              { q: "How is the leaderboard ranking calculated?", a: "Rankings are based on lifetime japa count. The more you chant (genuinely), the higher you rank. The leaderboard updates in real-time." },
+              { q: "Do I need to sign in to appear on the leaderboard?", a: "Yes. Sign in with Google to have your japa count synced and visible on the community leaderboard." },
+              { q: "How often does the leaderboard update?", a: "The leaderboard uses real-time Firestore listeners. It updates instantly whenever any devotee completes japa." },
+              { q: "Can someone cheat to get a higher rank?", a: "We have an anti-cheat Japa Points System. Users who use bots or auto-clickers are detected and their scores are invalidated." },
+              { q: "How do I improve my ranking?", a: "Chant consistently every day! Daily streaks earn bonus points, and the more malas you complete per session, the higher your score climbs." },
+            ]}
+          />
         </div>
       )}
     </main>

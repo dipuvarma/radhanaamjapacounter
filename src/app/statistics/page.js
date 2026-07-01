@@ -6,6 +6,10 @@ import { FaRegUser } from "react-icons/fa6";
 import { GiSandsOfTime } from "react-icons/gi";
 import { useJapaState } from "@/hooks/useJapaState";
 import { getLocalDateString } from "@/utils/helper";
+import { getSessions, getCurrentMonthPoints } from "@/lib/storage";
+import { useEffect, useState } from "react";
+import FAQSection from "@/components/FAQSection";
+
 
 import {
   BarChart,
@@ -83,6 +87,13 @@ const getMonthlyData = (dailyStats) => {
 
 const page = () => {
   const { analytics } = useJapaState();
+  const [sessions, setSessions] = useState([]);
+  const [monthPoints, setMonthPoints] = useState(0);
+
+  useEffect(() => {
+    setSessions(getSessions());
+    setMonthPoints(getCurrentMonthPoints());
+  }, []);
 
   const summary = analytics?.summary || {
     currentStreak: 0,
@@ -318,6 +329,47 @@ const page = () => {
           </div>
         </div>
       </section>
+
+      {/* ── Monthly Points ── */}
+      <section aria-labelledby="monthly-points-title" className="bg-gradient-to-br from-[#F37420] to-[#F9BB4D] rounded-xl p-5 sm:p-6 shadow-md mt-8 text-center">
+        <p id="monthly-points-title" className="text-xs uppercase tracking-wider text-amber-100 font-semibold mb-1">Is Mahine Ke Points</p>
+        <p className="text-5xl font-black text-white">{monthPoints.toFixed(2)}</p>
+        <p className="text-xs text-amber-100/80 mt-2">Points = Mala × Time × Streak × Tap Quality</p>
+      </section>
+
+      {/* ── Session History ── */}
+      {sessions.length > 0 && (
+        <section aria-labelledby="session-history-title" className="bg-[#FFFDF9] border border-amber-900/10 p-5 sm:p-6 rounded-xl shadow-xs mt-8">
+          <h2 id="session-history-title" className="text-lg sm:text-xl font-bold text-amber-950 mb-4">Session History</h2>
+          <div className="space-y-3">
+            {sessions.slice().reverse().map((s, i) => (
+              <div key={i} className="bg-amber-50/60 border border-amber-200/60 rounded-xl p-4 flex justify-between items-center gap-3">
+                <div>
+                  <p className="text-sm font-semibold text-amber-900">{s.date}</p>
+                  <p className="text-xs text-amber-700 mt-0.5">
+                    {s.malaCount} mala · {s.japaCount} japa · {Math.round(s.sessionDurationSeconds / 60)} min · {s.streakDays}d streak
+                  </p>
+                </div>
+                <span className="font-black text-[#F37420] text-lg whitespace-nowrap">+{s.pointsEarned} pts</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* FAQ Section */}
+      <div className="mt-8">
+        <FAQSection
+          headingId="statistics-faq"
+          faqs={[
+            { q: "How are my statistics calculated?", a: "Your japa count, duration, and streak are all tracked locally in your browser. The Statistics page reads this data to show weekly charts, monthly heatmaps, and session history." },
+            { q: "What does the Monthly Heatmap show?", a: "Each square represents one day. Darker colors mean more japa that day — from light yellow (< 108) to saffron orange (540+) to golden (1080+)." },
+            { q: "What are Japa Points?", a: "Points are calculated at the end of each session: Mala Count × Time Score × Streak Multiplier × Tap Authenticity. The formula rewards consistent, genuine chanting." },
+            { q: "Why is my streak showing 0?", a: "Streaks reset if you miss a day. Your streak increases every day you chant at least once before midnight." },
+            { q: "Can I see statistics from previous months?", a: "Yes! The Session History section shows all past sessions. Monthly points are tracked separately per month." },
+          ]}
+        />
+      </div>
     </main>
   );
 };

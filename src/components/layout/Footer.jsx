@@ -56,11 +56,11 @@ const Footer = () => {
 
   const legalPages = [
     {
-      name: "About",
-      pathUrl: "/about",
+      name: "About Us",
+      pathUrl: "/about-us",
     },
     {
-      name: "Privay & Policy",
+      name: "Privacy & Policy",
       pathUrl: "/privacy-policy",
     },
     {
@@ -70,6 +70,10 @@ const Footer = () => {
     {
       name: "Disclaimer",
       pathUrl: "/disclaimer",
+    },
+    {
+      name: "Terms & Conditions",
+      pathUrl: "/terms-and-conditions",
     },
   ];
 

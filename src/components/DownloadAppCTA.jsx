@@ -1,30 +1,57 @@
 import { BiLogoPlayStore } from "react-icons/bi";
+import Image from "next/image";
 
 export default function DownloadAppCTA() {
   return (
     <section className="relative max-w-5xl mx-auto my-20 overflow-hidden rounded-[28px] border border-white/40 bg-[#FF7A1A] p-10 sm:p-14 lg:p-16">
-      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[60%] sm:block">
-        <div className="absolute -right-32 top-1/2 h-[640px] w-[640px] -translate-y-1/2 rounded-full bg-[#FFD8AE]/40" />
-        <div className="absolute -right-16 top-1/2 h-[520px] w-[520px] -translate-y-1/2 rounded-full bg-[#FFC18A]/45" />
-        <div className="absolute right-0 top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-[#FFA968]/50" />
-        <div className="absolute right-16 top-1/2 h-[280px] w-[280px] -translate-y-1/2 rounded-full bg-[#FF9450]/55" />
-        <div className="absolute right-32 top-1/2 h-[160px] w-[160px] -translate-y-1/2 rounded-full bg-[#FF8533]/60" />
+      {/* Decorative background glow */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#FF7A1A] via-[#F37420] to-[#e05e0a] opacity-80" />
+
+      {/* Images on the right side */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden sm:flex items-center justify-end pr-6 gap-4">
+        {/* image-4 — slightly smaller, angled back */}
+        <div className="relative w-32 h-44 lg:w-36 lg:h-52 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 rotate-3 -translate-y-4 opacity-90">
+          <Image
+            src="/images/image-4.jpg"
+            alt="Devotee chanting japa"
+            fill
+            className="object-cover"
+            sizes="144px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#F37420]/60 to-transparent" />
+        </div>
+
+        {/* image-1 — slightly larger, front */}
+        <div className="relative w-36 h-52 lg:w-44 lg:h-60 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/30 -rotate-2 translate-y-2">
+          <Image
+            src="/images/image-1.jpg"
+            alt="Radha Krishna devotion"
+            fill
+            className="object-cover"
+            sizes="176px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#F37420]/40 to-transparent" />
+        </div>
       </div>
 
-      <div className="relative z-10 max-w-xl">
-        <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-          Download Mobile App
+      <div className="relative z-10 max-w-md">
+        <p className="text-amber-100 font-semibold text-sm uppercase tracking-widest mb-3">
+          📿 Japa on the go
+        </p>
+        <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl leading-tight">
+          Download <br className="hidden sm:block" />Mobile App
         </h2>
 
-        <p className="mt-4 max-w-md text-base text-white/90 sm:text-lg">
-          Your laboratory instruments should serve you, not the other way
-          around. We&rsquo;re happy to help you.
+        <p className="mt-4 max-w-sm text-base text-white/90 sm:text-lg leading-relaxed">
+          Chant Radhe Radhe anywhere, anytime. Track your japa, maintain
+          your streak, and climb the leaderboard — all in your pocket.
         </p>
 
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <button
             type="button"
-            className="group flex items-center justify-between gap-2 rounded-full bg-black px-6 py-4 text-sm font-semibold text-white transition-transform hover:scale-[1.02] sm:text-base"
+            aria-label="Download on Google Play Store"
+            className="group flex items-center justify-between gap-2 rounded-full bg-black px-6 py-4 text-sm font-semibold text-white transition-transform hover:scale-[1.02] sm:text-base shadow-lg"
           >
             <BiLogoPlayStore className="text-xl" />
             <span>Download on Play Store</span>
